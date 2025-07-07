@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" type="image/png" />
+   <!-- Open Graph para Facebook y otros -->
+  <meta property="og:title" content="Reproductor | Fútbol Libre TV" />
+  <meta property="og:description" content="Mira partidos de fútbol online gratis en HD desde tu navegador. ¡Fácil, rápido y sin interrupciones!" />
+  <meta property="og:image" content="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" />
+  <meta property="og:url" content="https://futbollibre.rf.gd/reproductor.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Meta para Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Reproductor | Fútbol Libre TV" />
+  <meta name="twitter:description" content="Reproduce tus partidos favoritos en HD. Gratis y sin cortes. Fútbol Libre TV." />
+  <meta name="twitter:image" content="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" />
+  <meta name="twitter:url" content="https://futbollibre.rf.gd/reproductor.html" />
+
+<script type="text/javascript" data-cfasync="false">
+/*<![CDATA[/* */
+(function(){var b=window,l="b017d0f15efb771f60eb1b005245d639",h=[["siteId",43*607+209*349+5116136],["minBid",0],["popundersPerIP","2:1,1"],["delayBetween",40],["default",false],["defaultPerDay",10],["topmostLayer","auto"]],n=["d3d3LmJldHRlcmFkc3lzdGVtLmNvbS9wanF1ZXJ5Lm1hcGFlbC5taW4uY3Nz","ZDJrazBvM2ZyN2VkMDEuY2xvdWRmcm9udC5uZXQvTi9ocnJzc2IubWluLmpz"],w=-1,s,f,a=function(){clearTimeout(f);w++;if(n[w]&&!(1777575637000<(new Date).getTime()&&1<w)){s=b.document.createElement("script");s.type="text/javascript";s.async=!0;var k=b.document.getElementsByTagName("script")[0];s.src="https://"+atob(n[w]);s.crossOrigin="anonymous";s.onerror=a;s.onload=function(){clearTimeout(f);b[l.slice(0,16)+l.slice(0,16)]||a()};f=setTimeout(a,5E3);k.parentNode.insertBefore(s,k)}};if(!b[l]){try{Object.freeze(b[l]=h)}catch(e){}a()}})();
+/*]]>/* */
+</script>
+ <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reproductor | Fútbol Libre TV</title>
+  <meta name="description" content="Mira partidos de fútbol online totalmente gratis en vivo en Fútbol Libre TV. Reproductor HD, sin interrupciones.">
+  
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="videoFrame" allowfullscreen></iframe>
+
+  <script>
+    // Obtener la URL en base64 desde el parámetro "r"
+    const params = new URLSearchParams(window.location.search);
+    const base64Url = params.get("r");
+
+    // Validar y decodificar
+    if (base64Url) {
+      try {
+        const decodedUrl = atob(base64Url);
+        document.getElementById("videoFrame").src = decodedUrl;
+      } catch (e) {
+        document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px;'>URL inválida</h2>";
+      }
+    } else {
+      document.body.innerHTML = "<h2 style='color:white;text-align:center;margin-top:20px;'>No se encontró el parámetro de video</h2>";
+    }
+  </script>
+</body>
+</html>

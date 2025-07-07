@@ -1,0 +1,103 @@
+
+[
+  {
+    "nombre": "ESPN",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=espn",
+    "logo": "https://img.golazoplay.com/uploads/espn_16110aaa3a.webp"},
+    
+  {
+    "nombre": "ESPN2",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=espn2",
+    "logo": "https://img.golazoplay.com/uploads/espn_2_82441267e9.webp"
+  },
+  {
+    "nombre": "ESPN3",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=espn3",
+    "logo": "https://img.golazoplay.com/uploads/espn_3_0f4a5444d4.webp"
+  },
+  {
+    "nombre": "ESPNPREMIUM",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=espnpremium",
+    "logo": "https://tse3.mm.bing.net/th/id/OIP.ZyPqZ_HWGeerHJD_DTpb2gHaD4?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+  },
+  {
+    "nombre": "Dsports",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=dsports",
+    "logo": "https://img.golazoplay.com/uploads/dsports_bea74cb844.webp"
+  },
+  {
+    "nombre": "Dsports2",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=dsports",
+    "logo": "https://img.golazoplay.com/uploads/dsports_2_3481b3d20c.webp"
+  },
+  {
+    "nombre": "Dsports+",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=dsportsplus",
+    "logo": "https://img.golazoplay.com/uploads/dsports_plus_e24f78b7c0.webp"
+  },
+  {
+    "nombre": "FOX SPORTS",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=fox1ar",
+    "logo": "https://futbollibre-tv.su/img/logo-canal/Fox_Sports.png"
+  },
+   {
+    "nombre": "FOXSPORTS 2",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=foxsports2mx",
+    "logo": "https://futbollibre-tv.su/img/logo-canal/Fox_Sports_2.png"
+  },
+  {
+    "nombre": "FOXSPORTS 3",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=foxsports3mx",
+    "logo": "https://futbollibre-tv.su/img/logo-canal/Fox_Sports_3.png"
+  },
+    {
+    "nombre": "FOXSPORTS MX",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=foxsportsmx",
+    "logo": "https://futbollibre-tv.su/img/logo-canal/Fox_Sports.png"
+  },
+  {
+    "nombre": "WinSports",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=winsports",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Win_Sports_nuevo_logo.svg/1200px-Win_Sports_nuevo_logo.svg.png"
+  },
+  {
+    "nombre": "WINSPORTS +",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=winplus",
+    "logo": "https://logowik.com/content/uploads/images/win-sports6956.logowik.com.webp"
+  },
+  {
+    "nombre": "TYCSPORTS",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=tycsports",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/TyC_Sports_logo.svg/1024px-TyC_Sports_logo.svg.png"
+  },
+  {
+    "nombre": "DAZN",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=dazn1",
+    "logo": "https://th.bing.com/th/id/R.cc2791914ba4c17c9863ef78ae7f3e3c?rik=%2fvvX%2bT4ZqgiD4w&riu=http%3a%2f%2fs3-eu-west-1.amazonaws.com%2fdazn-marketing%2fapp%2fuploads%2f2016%2f08%2f09120714%2fDAZN-Logo-RGB_WonB.png&ehk=%2f%2fT7Upyzm2ai20bJdhuu7TFVA6fOIctrMWHpbBICf0A%3d&risl=&pid=ImgRaw&r=0"
+  },
+  {
+    "nombre": "TUDN USA",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=tudn_usa",
+    "logo": "https://futbollibre-tv.su/img/logo-canal/TUDN.webp"
+  },
+    {
+    "nombre": "TNTSPORTS",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=tntsports",
+    "logo": "https://images.seeklogo.com/logo-png/48/2/tnt-sports-logo-png_seeklogo-486966.png"
+  },
+  {
+    "nombre": "TELEFE",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=telefe",
+    "logo": "https://th.bing.com/th/id/R.be47b27e051b57f37a70c46230e18eb4?rik=Wn8PoHEdhqk%2fRg&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fc%2fcc%2fTelefe_(nuevo_logo).png&ehk=eCUexgInYzocwgR2qHtnetGgEzXuDA7vyA6c%2f1eoxkM%3d&risl=&pid=ImgRaw&r=0"
+  },
+  {
+    "nombre": "VTVPLUS",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=vtvplus",
+    "logo": "https://vtv.com.uy/wp-content/uploads/2022/11/Logo.svg"
+  },
+  {
+    "nombre": "GOLTV",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=goltv",
+    "logo": "https://simg.nicepng.com/png/small/5-52552_1-tvg-logo-http-gol-tv-logo-png.png"
+  }
+]

@@ -1,0 +1,257 @@
+<!-- Este es el html del reproductor de los canales -->
+<!DOCTYPE html>
+<html lang="es">
+<head> 
+  <script type="text/javascript" data-cfasync="false">
+/*<![CDATA[/* */
+(function(){var b=window,l="b017d0f15efb771f60eb1b005245d639",h=[["siteId",43*607+209*349+5116136],["minBid",0],["popundersPerIP","2:1,1"],["delayBetween",40],["default",false],["defaultPerDay",10],["topmostLayer","auto"]],n=["d3d3LmJldHRlcmFkc3lzdGVtLmNvbS9wanF1ZXJ5Lm1hcGFlbC5taW4uY3Nz","ZDJrazBvM2ZyN2VkMDEuY2xvdWRmcm9udC5uZXQvTi9ocnJzc2IubWluLmpz"],w=-1,s,f,a=function(){clearTimeout(f);w++;if(n[w]&&!(1777575637000<(new Date).getTime()&&1<w)){s=b.document.createElement("script");s.type="text/javascript";s.async=!0;var k=b.document.getElementsByTagName("script")[0];s.src="https://"+atob(n[w]);s.crossOrigin="anonymous";s.onerror=a;s.onload=function(){clearTimeout(f);b[l.slice(0,16)+l.slice(0,16)]||a()};f=setTimeout(a,5E3);k.parentNode.insertBefore(s,k)}};if(!b[l]){try{Object.freeze(b[l]=h)}catch(e){}a()}})();
+/*]]>/* */
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Ver canal en vivo | Fútbol Libre TV</title>
+  <meta name="description" content="Disfruta de tus canales deportivos favoritos en vivo por Fútbol Libre TV. Sin cortes y completamente gratis." />
+  <meta name="keywords" content="fútbol libre, ver canales, deportes en vivo, ver tv online, canales deportivos" />
+  <meta name="author" content="Fútbol Libre TV" />
+
+  <!-- Open Graph (Facebook, WhatsApp) -->
+  <meta property="og:title" content="Ver canal en vivo | Fútbol Libre TV" />
+  <meta property="og:description" content="Canales deportivos en vivo sin interrupciones. ¡Entra ya y disfruta del partido!" />
+  <meta property="og:image" content="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" />
+  <meta property="og:url" content="https://futbollibre.rf.gd/ver.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ver canal en vivo | Fútbol Libre TV" />
+  <meta name="twitter:description" content="Canales deportivos en vivo sin interrupciones. ¡Entra ya y disfruta del partido!" />
+  <meta name="twitter:image" content="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" />
+
+  <link rel="icon" type="image/png" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain">
+
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 18px 20px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header .logo-btn {
+      background: #fff;
+      border: 1.5px solid #1ed760;
+      border-radius: 6px;
+      padding: 4px 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    header .logo-btn img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .contenido {
+      text-align: center;
+      padding: 30px 0;
+      width: 100%;
+    }
+
+    .logo {
+      width: 120px;
+      margin: 10px auto;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 10px 0;
+    }
+
+    .iframe-container {
+      padding: 0 10px;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: block;
+      margin: 20px auto;
+    }
+
+    a.boton {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background: #1ed760;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.2s ease;
+      width: fit-content;
+    }
+
+    a.boton:hover {
+      background: #17b14c;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      font-size: 14px;
+      padding: 20px;
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    footer .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      margin: 0;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      iframe {
+        height: 200px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .contenido {
+        padding: 20px 0;
+      }
+
+      .logo {
+        width: 100px;
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 8px 0;
+      }
+
+      a.boton {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      footer {
+        padding: 15px 0;
+        font-size: 13px;
+        text-align: center;
+      }
+
+      footer .top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="./" style="color:#000000; text-decoration:none;">Fútbol Libre TV</a>
+    <a href="./" class="logo-btn">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="logo">
+    </a>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <img id="logo" class="logo" src="" alt="">
+    <h1 id="titulo"></h1>
+    <p id="mensaje" style="color:#555;"></p>
+    
+    <div class="iframe-container">
+      <iframe id="canal-frame" allowfullscreen></iframe>
+    </div>
+
+    <a class="boton" href="#" onclick="location.reload(); return false;">Recargar página</a>
+  </main>
+
+  <footer>
+    <p style="margin-bottom: 10px;">Fútbol Libre TV 2025©</p>
+    <p style="margin: 0;">
+      Fútbol Libre TV no aloja ni transmite contenido. Todos los enlaces provienen de terceros sin relación con este sitio.
+    </p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const canalParam = (params.get('canal') || '').trim().toLowerCase();
+
+    fetch('canales_con_logo.json')
+      .then(res => res.json())
+      .then(data => {
+        const canal = data.find(c => c.nombre.toLowerCase().trim() === canalParam);
+
+        if (!canal) {
+          document.getElementById('contenido').innerHTML = '<p>Canal no encontrado.</p>';
+          return;
+        }
+
+        document.getElementById('titulo').textContent = canal.nombre;
+        document.getElementById('logo').src = canal.logo;
+        document.getElementById('canal-frame').src = canal.iframe;
+      });
+  </script>
+</body>
+</html>

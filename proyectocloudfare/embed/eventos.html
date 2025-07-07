@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+  <script type="text/javascript" data-cfasync="false">
+/*<![CDATA[/* */
+(function(){var b=window,l="b017d0f15efb771f60eb1b005245d639",h=[["siteId",43*607+209*349+5116136],["minBid",0],["popundersPerIP","2:1,1"],["delayBetween",40],["default",false],["defaultPerDay",10],["topmostLayer","auto"]],n=["d3d3LmJldHRlcmFkc3lzdGVtLmNvbS9wanF1ZXJ5Lm1hcGFlbC5taW4uY3Nz","ZDJrazBvM2ZyN2VkMDEuY2xvdWRmcm9udC5uZXQvTi9ocnJzc2IubWluLmpz"],w=-1,s,f,a=function(){clearTimeout(f);w++;if(n[w]&&!(1777575637000<(new Date).getTime()&&1<w)){s=b.document.createElement("script");s.type="text/javascript";s.async=!0;var k=b.document.getElementsByTagName("script")[0];s.src="https://"+atob(n[w]);s.crossOrigin="anonymous";s.onerror=a;s.onload=function(){clearTimeout(f);b[l.slice(0,16)+l.slice(0,16)]||a()};f=setTimeout(a,5E3);k.parentNode.insertBefore(s,k)}};if(!b[l]){try{Object.freeze(b[l]=h)}catch(e){}a()}})();
+/*]]>/* */
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ver partido</title>
+  <link rel="icon" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" type="image/png" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 18px 20px;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    header .logo-btn {
+      background: #fff;
+      border: 1.5px solid #1ed760;
+      border-radius: 6px;
+      padding: 4px 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    header .logo-btn img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .contenido {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 900px;
+      height: 500px;
+      border: none;
+      border-radius: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    a.boton {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #1ed760;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    a.boton:hover {
+      background: #17b14c;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      font-size: 14px;
+      padding: 20px;
+    }
+
+    footer .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 600px) {
+      iframe {
+        height: 250px;
+      }
+
+      header {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+      footer .top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      a.boton {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <a href="/" onclick="window.top.location.href='https://futbollibre.rf.gd'; return false;" style="color:#000000; text-decoration:none;">Fútbol Libre TV</a>
+  <a href="/" onclick="window.top.location.href='https://futbollibre.rf.gd'; return false;" class="logo-btn">
+    <img src="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="logo">
+  </a>
+</header>
+
+  <div class="contenido">
+    <iframe id="player" allowfullscreen></iframe>
+    <a class="boton" href="#" onclick="location.reload()">Recargar página</a>
+  </div>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const iframe = document.getElementById("player");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const encoded = urlParams.get("r");
+
+    if (encoded) {
+      try {
+        const decoded = atob(encoded);
+        console.log("URL decodificada:", decoded);
+        iframe.src = decoded;
+      } catch (error) {
+        console.error("Error al decodificar el parámetro r:", error);
+        iframe.src = ""; // o muestra error
+      }
+    } else {
+      console.warn("No se encontró el parámetro r en la URL");
+      iframe.src = "";
+    }
+  });
+</script>
+
+
+  <footer style="background: #111827; color: white; font-family: Arial, sans-serif; font-size: 14px; padding: 20px; margin-top: 40px; text-align: center;">
+  <p style="margin-bottom: 10px;">Fútbol Libre TV 2025©</p>
+  <p style="margin: 0;">
+    Fútbol Libre TV no aloja ni transmite contenido. Todos los enlaces provienen de terceros sin relación con este sitio.
+  </p>
+</footer>
+
+</body>
+</html>
+
+</body>
+</html>

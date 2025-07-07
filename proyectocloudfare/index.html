@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO Básico -->
+  <title>Fútbol Libre TV – Partidos en Vivo Gratis 2025</title>
+  <meta name="description" content="Disfruta del mejor fútbol en vivo: Copa Libertadores, Sudamericana, Champions y más. Canales gratis online. ¡Fútbol sin límites solo en Fútbol Libre TV!">
+  
+  <!-- Verificación Motores de Búsqueda -->
+  <meta name="msvalidate.01" content="11C095E3F6566C27428ACB1EF567CE4D" />
+
+  <!-- No cache -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+<!-- Open Graph -->
+<meta property="og:url" content="https://futbollibre.rf.gd/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fútbol Libre TV – Partidos en Vivo Gratis 2025">
+<meta property="og:description" content="Disfruta del mejor fútbol en vivo: Copa Libertadores, Sudamericana, Champions y más. Canales gratis online. ¡Fútbol sin límites solo en Fútbol Libre TV!">
+<meta property="og:image" content="https://futbollibre.rf.gd/portada.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="futbollibre.rf.gd">
+<meta property="twitter:url" content="https://futbollibre.rf.gd/">
+<meta name="twitter:title" content="Fútbol Libre TV – Partidos en Vivo Gratis 2025">
+<meta name="twitter:description" content="Disfruta del mejor fútbol en vivo: Copa Libertadores, Sudamericana, Champions y más. Canales gratis online. ¡Fútbol sin límites solo en Fútbol Libre TV!">
+<meta name="twitter:image" content="https://futbollibre.rf.gd/portada.png" />
+  <link rel="icon" type="image/png" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" />
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="css/styles.min.css" /> <!-- Si ya tienes tu CSS minificado -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Fútbol Libre TV",
+  "url": "https://futbollibre.rf.gd/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://futbollibre.rf.gd/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Fútbol Libre TV",
+    "url": "https://futbollibre.rf.gd/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain",
+      "width": 60,
+      "height": 60
+    },
+    "sameAs": [
+      "https://t.me/tu_canal_telegram",
+      "https://facebook.com/tu_pagina_facebook"
+    ]
+  }
+}
+</script>
+
+</head>
+<body>
+  <header>
+    <a href="./" class="texto-logo">Fútbol Libre</a>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <div id="destacados-header" class="destacados-header"></div>
+      <button id="menu-movil-btn" class="menu-movil-btn" aria-label="Mostrar canales destacados">&#9776;</button>
+      <div id="menu-movil-lista" class="menu-movil-lista"></div>
+      <a href="./" class="logo-link">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" alt="logo" class="logo-img">
+      </a>
+    </div>
+  </header>
+  
+
+  <main class="main-content">
+    <div class="titulo-central">Fútbol Libre TV</div>
+
+    <div class="agenda-box">
+      <div class="agenda-titulo" id="title-agenda">Agenda</div>
+      <div id="eventos" style="min-height: 300px;"></div>
+    </div>
+
+    <div class="titulo-canales">Canales Deportivos en Vivo por Internet</div>
+    <div class="canales-grid" id="canales-grid">
+  <p id="placeholder-canales">Cargando canales...</p>
+</div>
+
+    <div class="faq-section"></div>
+  </main>
+
+  <footer>
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center;">
+      <p style="margin: 0;">Fútbol Libre TV 2025©</p>
+      <div style="display: flex; gap: 15px;">
+        <a href="#">Telegram</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script defer src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
+  <script defer src="js/index.js"></script>
+  <script defer>
+    if (window.location.search.includes('?i=')) {
+      window.history.replaceState(null, null, window.location.pathname);
+    }
+  </script>
+
+  <!-- Canales destacados + carga dinámica -->
+  <script defer>
+    const nombresDestacados = ["ESPN", "WinSports", "TYCSPORTS", "Dsports", "DAZN"];
+    fetch('canales_con_logo.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('canales-grid');
+        data.forEach(canal => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+  <h3>${canal.nombre}</h3>
+  <img src="${canal.logo}" alt="${canal.nombre}" width="100" height="100" style="object-fit: contain;">
+  <button onclick="window.open('ver.html?canal=${encodeURIComponent(canal.nombre)}', '_blank')">Ver canal</button>
+`;
+          container.appendChild(card);
+        });
+        const placeholder = document.getElementById("placeholder-canales");
+if (placeholder) placeholder.remove();
+
+        const headerDestacados = document.getElementById('destacados-header');
+        const menuMovilBtn = document.getElementById('menu-movil-btn');
+        const menuMovilLista = document.getElementById('menu-movil-lista');
+
+        if (headerDestacados && nombresDestacados.length > 0) {
+          headerDestacados.innerHTML = nombresDestacados.map(nombre =>
+            `<a href="ver.html?canal=${encodeURIComponent(nombre)}" target="_blank" class="destacado-link">${nombre}</a>`
+          ).join(" · ");
+          menuMovilLista.innerHTML = nombresDestacados.map(nombre =>
+            `<a href="ver.html?canal=${encodeURIComponent(nombre)}" target="_blank">${nombre}</a>`
+          ).join("");
+        }
+
+        menuMovilBtn.addEventListener('click', () => {
+          menuMovilLista.style.display = menuMovilLista.style.display === 'block' ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', (e) => {
+          if (!menuMovilBtn.contains(e.target) && !menuMovilLista.contains(e.target)) {
+            menuMovilLista.style.display = 'none';
+          }
+        });
+      });
+  </script>
+
+  <!-- Publicidad -->
+  <script async src="//pl27081997.profitableratecpm.com/06/01/96/0601965c9c59f67539b44a9e1b02fda6.js"></script>
+
+</body>
+</html>
