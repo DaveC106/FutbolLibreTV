@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://futbollibre.rf.gd/sitemap.xml
+Sitemap: https://futbollibretv.pages.dev/sitemap.xml
