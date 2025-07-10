@@ -160,13 +160,22 @@ body.modo-oscuro footer {
 body.modo-oscuro iframe {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
+.titulo-link {
+  text-decoration: none;
+  font-size: 20px;
+  color: #000; /* por defecto negro */
+}
+
+body.modo-oscuro .titulo-link {
+  color: #fff; /* blanco en modo oscuro */
+}
   </style>
 </head>
 <body>
 
  <header style="display: flex; justify-content: space-between; align-items: center; padding: 18px 20px;">
   <div style="display: flex; align-items: center; gap: 10px;">
-    <a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" style="color:#000000; text-decoration:none; font-size: 20px;">Fútbol Libre TV</a>
+<a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" class="titulo-link">Fútbol Libre TV</a>
     <a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" class="logo-btn">
       <img src="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="logo" style="width: 28px; height: 28px;">
     </a>
