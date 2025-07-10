@@ -1,10 +1,10 @@
 const $ = jQuery;
 const AGENDA_URL = "https://ftvhd.com/diaries.json";
 
-//document.addEventListener("DOMContentLoaded", function () {
-  //obtenerAgenda();
-  //setInterval(refrescarAgenda, 60000);
-//});
+document.addEventListener("DOMContentLoaded", function () {
+  obtenerAgenda();
+  setInterval(refrescarAgenda, 60000);
+});
 
 // Delegación para mostrar servidores
 document.addEventListener("click", function (e) {
