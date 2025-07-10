@@ -7,9 +7,15 @@
  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <title>Ver partido</title>
   <link rel="icon" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" type="image/png" />
-
+ <script>
+  if (localStorage.getItem('tema') === 'oscuro') {
+    document.documentElement.classList.add('modo-oscuro');
+    document.body.classList.add('modo-oscuro');
+  }
+</script>
   <style>
     * {
       box-sizing: border-box;
@@ -161,12 +167,6 @@ body.modo-oscuro iframe {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
   </style>
-  <script>
-  if (localStorage.getItem('tema') === 'oscuro') {
-    document.documentElement.classList.add('modo-oscuro');
-    document.body.classList.add('modo-oscuro');
-  }
-</script>
 </head>
 <body>
 

@@ -19,7 +19,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reproductor | Fútbol Libre TV</title>
   <meta name="description" content="Mira partidos de fútbol online totalmente gratis en vivo en Fútbol Libre TV. Reproductor HD, sin interrupciones.">
-  
+   <script>
+  if (localStorage.getItem('tema') === 'oscuro') {
+    document.documentElement.classList.add('modo-oscuro');
+    document.body.classList.add('modo-oscuro');
+  }
+</script>
 
   <style>
     html, body {
@@ -62,12 +67,7 @@ body.modo-oscuro iframe {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
   </style>
-  <script>
-  if (localStorage.getItem('tema') === 'oscuro') {
-    document.documentElement.classList.add('modo-oscuro');
-    document.body.classList.add('modo-oscuro');
-  }
-</script>
+ 
 </head>
 <body>
   <iframe id="videoFrame" allowfullscreen></iframe>
