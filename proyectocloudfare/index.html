@@ -167,33 +167,7 @@ if (placeholder) placeholder.remove();
         });
       });
   </script>
-  <script>
-  const toggleBtn = document.getElementById('toggle-tema');
-  const body = document.body;
-
-  // Función para aplicar el tema guardado
-  function aplicarTemaGuardado() {
-    const temaGuardado = localStorage.getItem('tema');
-    if (temaGuardado === 'oscuro') {
-      body.classList.add('modo-oscuro');
-      toggleBtn.textContent = '☀️';
-    } else {
-      body.classList.remove('modo-oscuro');
-      toggleBtn.textContent = '🌙';
-    }
-  }
-
-  // Llamar la función al cargar la página
-  aplicarTemaGuardado();
-
-  // Evento cuando el usuario cambia el tema
-  toggleBtn.addEventListener('click', () => {
-    body.classList.toggle('modo-oscuro');
-    const temaActual = body.classList.contains('modo-oscuro') ? 'oscuro' : 'claro';
-    localStorage.setItem('tema', temaActual);
-    toggleBtn.textContent = temaActual === 'oscuro' ? '☀️' : '🌙';
-  });
-</script>
+  
 
 </body>
 </html>
