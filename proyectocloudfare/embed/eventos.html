@@ -10,15 +10,6 @@
 
   <title>Ver partido</title>
   <link rel="icon" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" type="image/png" />
-<script>
-  (function() {
-    const tema = localStorage.getItem('tema');
-    if (tema === 'oscuro') {
-      document.documentElement.classList.add('modo-oscuro');
-      document.body.classList.add('modo-oscuro');
-    }
-  })();
-</script>
   <style>
     * {
       box-sizing: border-box;
@@ -173,11 +164,14 @@ body.modo-oscuro iframe {
 </head>
 <body>
 
-  <header>
-  <a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" style="color:#000000; text-decoration:none;">Fútbol Libre TV</a>
-  <a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" class="logo-btn">
-    <img src="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="logo">
-  </a>
+ <header style="display: flex; justify-content: space-between; align-items: center; padding: 18px 20px;">
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" style="color:#000000; text-decoration:none; font-size: 20px;">Fútbol Libre TV</a>
+    <a href="/" onclick="window.top.location.href='https://futbollibretv.pages.dev/'; return false;" class="logo-btn">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="logo" style="width: 28px; height: 28px;">
+    </a>
+  </div>
+  <button id="toggle-tema" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
 </header>
 
   <div class="contenido">
@@ -218,6 +212,31 @@ body.modo-oscuro iframe {
 /*<![CDATA[/* */
 (function(){var h=window,l="af378df456a7ede43ec4c1194dce40fa",u=[["siteId",104-99-891*569+5723604],["minBid",0],["popundersPerIP","2:6,2:10"],["delayBetween",30],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],i=["d3d3LmJldHRlcmFkc3lzdGVtLmNvbS9ZRVpSaU8veHBZeGNjL3h0eXBlZC5taW4uanM=","ZDJrazBvM2ZyN2VkMDEuY2xvdWRmcm9udC5uZXQvdHZhbGlkYXRlLmpz"],k=-1,b,m,n=function(){clearTimeout(m);k++;if(i[k]&&!(1777931198000<(new Date).getTime()&&1<k)){b=h.document.createElement("script");b.type="text/javascript";b.async=!0;var t=h.document.getElementsByTagName("script")[0];b.src="https://"+atob(i[k]);b.crossOrigin="anonymous";b.onerror=n;b.onload=function(){clearTimeout(m);h[l.slice(0,16)+l.slice(0,16)]||n()};m=setTimeout(n,5E3);t.parentNode.insertBefore(b,t)}};if(!h[l]){try{Object.freeze(h[l]=u)}catch(e){}n()}})();
 /*]]>/* */
+</script>
+<script>
+  const body = document.body;
+  const toggleBtn = document.getElementById('toggle-tema');
+
+  function aplicarTema() {
+    const tema = localStorage.getItem('tema');
+    if (tema === 'oscuro') {
+      body.classList.add('modo-oscuro');
+      document.documentElement.classList.add('modo-oscuro');
+      toggleBtn.textContent = '☀️';
+    } else {
+      body.classList.remove('modo-oscuro');
+      document.documentElement.classList.remove('modo-oscuro');
+      toggleBtn.textContent = '🌙';
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    const nuevoTema = body.classList.contains('modo-oscuro') ? 'claro' : 'oscuro';
+    localStorage.setItem('tema', nuevoTema);
+    aplicarTema();
+  });
+
+  aplicarTema();
 </script>
 
 </body>
