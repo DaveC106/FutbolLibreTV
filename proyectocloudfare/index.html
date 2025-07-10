@@ -65,24 +65,28 @@
 
 </head>
 <body>
-  <header>
-   <h1 class="texto-logo" style="margin: 0; font-size: 24px;">
-    <a href="./" style="text-decoration: none; color: inherit;">
-      Fútbol Libre TV
-    </a>
-  </h1>
-    <div style="display: flex; align-items: center; gap: 14px;">
-      <div id="destacados-header" class="destacados-header"></div>
-      <button id="menu-movil-btn" class="menu-movil-btn" aria-label="Mostrar canales destacados">&#9776;</button>
-      <div id="menu-movil-lista" class="menu-movil-lista"></div>
-      <a href="./" class="logo-link">
-        <img src="favicon-removebg-preview.png" alt="logo" class="logo-img">
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; flex-wrap: wrap;">
+
+  <!-- IZQUIERDA: Título + Logo -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <h1 class="texto-logo" style="margin: 0; font-size: 24px;">
+      <a href="./" style="text-decoration: none; color: inherit;">
+        Fútbol Libre TV
       </a>
-    </div>
-    <button id="toggle-tema" style="background:none;border:none;font-size:20px;cursor:pointer;">
-  🌙
-</button>
-  </header>
+    </h1>
+    <img src="favicon-removebg-preview.png" alt="logo" class="logo-img" style="width: 40px; height: 40px;">
+  </div>
+
+  <!-- CENTRO: Canales destacados -->
+  <div id="destacados-header" class="destacados-header" style="flex: 1; text-align: center;"></div>
+
+  <!-- DERECHA: Modo oscuro + menú móvil -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <button id="toggle-tema" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
+    <button id="menu-movil-btn" class="menu-movil-btn" aria-label="Mostrar canales destacados">&#9776;</button>
+    <div id="menu-movil-lista" class="menu-movil-lista"></div>
+  </div>
+</header>
 
   
 
