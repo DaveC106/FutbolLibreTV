@@ -10,11 +10,14 @@
 
   <title>Ver partido</title>
   <link rel="icon" href="https://tse2.mm.bing.net/th/id/OIP.8kYsoIrIc4xDvEghq0zMowAAAA?pid=ImgDetMain" type="image/png" />
- <script>
-  if (localStorage.getItem('tema') === 'oscuro') {
-    document.documentElement.classList.add('modo-oscuro');
-    document.body.classList.add('modo-oscuro');
-  }
+<script>
+  (function() {
+    const tema = localStorage.getItem('tema');
+    if (tema === 'oscuro') {
+      document.documentElement.classList.add('modo-oscuro');
+      document.body.classList.add('modo-oscuro');
+    }
+  })();
 </script>
   <style>
     * {
