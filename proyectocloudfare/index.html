@@ -136,7 +136,7 @@
           card.innerHTML = `
   <h3>${canal.nombre}</h3>
   <img src="${canal.logo}" alt="${canal.nombre}" width="100" height="100" style="object-fit: contain;">
-  <button onclick="window.open('ver.html?canal=${encodeURIComponent(canal.nombre)}', '_blank')">Ver canal</button>
+  <button onclick="window.open('ver.html?canal=${encodeURIComponent(canal.nombre)}', '_blank')"> <strong>Ver canal</strong></button>
 `;
           container.appendChild(card);
         });
