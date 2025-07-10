@@ -241,15 +241,28 @@ body.modo-oscuro iframe {
 body.modo-oscuro .titulo-link {
   color: #fff;
 }
+.logo-btn {
+  background: transparent !important; /* Sin fondo */
+  border: none !important;            /* Quita borde si tiene */
+  padding: 0 !important;              /* Elimina relleno */
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-btn img {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
   </style>
 </head>
 <body>
 
   <header>
     <a href="./" class="titulo-link">Fútbol Libre TV</a>
-    <a href="./" class="logo-btn">
-      <img src="favicon-removebg-preview.png" alt="logo">
-    </a>
+   <a href="./" class="logo-btn">
+  <img src="favicon-removebg-preview.png" alt="logo">
+</a>
   </header>
 
   <main class="contenido" id="contenido">
