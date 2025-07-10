@@ -51,6 +51,46 @@ async function obtenerAgenda() {
     const result = await response.json();
     const data = result.data;
 
+    // ✅ GENERAR DATOS ESTRUCTURADOS JSON-LD
+    const sportsEvents = data.map(ev => {
+      const attr = ev.attributes;
+      const dateTime = `${attr.date_diary}T${attr.diary_hour}-05:00`;
+      const embedUrl = "https://futbollibretv.pages.dev" + (attr.embeds?.data[0]?.attributes?.embed_iframe || "");
+      const competencia = attr.country?.data?.attributes?.name || "Fútbol Internacional";
+      const description = attr.diary_description.trim().replace(/\s+/g, ' ');
+
+      return {
+        "@type": "SportsEvent",
+        "name": description,
+        "startDate": dateTime,
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": competencia
+        },
+        "url": embedUrl,
+        "organizer": {
+          "@type": "Organization",
+          "name": "Fútbol Libre TV",
+          "url": "https://futbollibretv.pages.dev/"
+        },
+        "description": `Partido de ${competencia} transmitido gratis por Fútbol Libre TV`
+      };
+    });
+
+    const ldScript = document.createElement('script');
+    ldScript.type = 'application/ld+json';
+    ldScript.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": sportsEvents
+    }, null, 2);
+
+    const oldScript = document.querySelector('script[type="application/ld+json"]');
+    if (oldScript) oldScript.remove();
+    document.head.appendChild(ldScript);
+    // 🔚 FIN JSON-LD
+
     menuElement.innerHTML = "";
 
     const dateCompleted = formatDate(new Date().toISOString());
