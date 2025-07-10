@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <link rel="preconnect" href="https://ftvhd.com">
-
+   
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -61,50 +60,6 @@
   }
 }
 </script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/luxon/3.4.4/luxon.min.js"></script>
-<script>
-  window.addEventListener("load", function () {
-    fetch("https://ftvhd.com/diaries.json")
-      .then(res => res.json())
-      .then(result => {
-        const data = result.data;
-        const eventos = document.getElementById("eventos");
-        const titleAgenda = document.getElementById("title-agenda");
-        const DateTime = luxon.DateTime;
-
-        const hoy = new Date().toISOString();
-        titleAgenda.textContent = "Agenda - " + new Date(hoy).toLocaleDateString("es-ES", { year: 'numeric', month: 'long', day: 'numeric' });
-
-        data.sort((a, b) => a.attributes.diary_hour.localeCompare(b.attributes.diary_hour));
-
-        let html = "";
-        data.forEach(value => {
-          const hora = DateTime.fromISO(value.attributes.diary_hour, { zone: "America/Lima" }).toLocal().toFormat("HH:mm");
-          const nombre = value.attributes.diary_description;
-          let imageUrl = "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
-
-          if (value.attributes.country?.data) {
-            imageUrl = "https://panel.futbollibretvs.pe" + value.attributes.country.data.attributes.image.data.attributes.url;
-          }
-
-          html += `
-            <li class="evento" style="list-style: none;">
-              <div class="fila">
-                <span class="hora-ovalo">${hora}</span>
-                <img src="${imageUrl}" alt="bandera" style="width: 18px; height: 18px; border-radius: 50%;">
-                <span class="nombre-evento">${nombre}</span>
-              </div>
-            </li>`;
-        });
-
-        eventos.innerHTML = html;
-      })
-      .catch(() => {
-        document.getElementById("eventos").innerHTML = "<p style='color:red;text-align:center;'>Error al cargar la agenda</p>";
-      });
-  });
-</script>
-
 
 </head>
 <body>
@@ -136,8 +91,6 @@
     <div class="agenda-box">
       <div class="agenda-titulo" id="title-agenda">Agenda</div>
       <div id="eventos" style="min-height: 300px;">
-  <p style="text-align:center;">⏳ Cargando agenda de partidos...</p>
-</div>
     </div>
 
     <div class="titulo-canales">Canales Deportivos en Vivo</div>
