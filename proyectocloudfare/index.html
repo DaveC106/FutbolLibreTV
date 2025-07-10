@@ -166,7 +166,23 @@ if (placeholder) placeholder.remove();
         });
       });
   </script>
-  
+  <script>
+  const toggleBtn = document.getElementById('toggle-tema');
+  const body = document.body;
+
+  // Cargar tema guardado
+  if (localStorage.getItem('tema') === 'oscuro') {
+    body.classList.add('modo-oscuro');
+    toggleBtn.textContent = '☀️';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    body.classList.toggle('modo-oscuro');
+    const modoActual = body.classList.contains('modo-oscuro') ? 'oscuro' : 'claro';
+    localStorage.setItem('tema', modoActual);
+    toggleBtn.textContent = modoActual === 'oscuro' ? '☀️' : '🌙';
+  });
+</script>
 
 </body>
 </html>
