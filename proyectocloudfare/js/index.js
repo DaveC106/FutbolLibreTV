@@ -50,9 +50,19 @@ async function obtenerAgenda() {
   const titleAgendaElement = document.querySelector(".agenda-titulo");
 
   try {
-    const response = await fetch(AGENDA_URL);
-    const result = await response.json();
-    const data = result.data;
+    let data = [];
+
+for (const url of AGENDA_URLS) {
+  try {
+    const res = await fetch(url);
+    const json = await res.json();
+    if (Array.isArray(json.data)) {
+      data = data.concat(json.data);
+    }
+  } catch (err) {
+    console.error("Error cargando eventos desde:", url, err);
+  }
+}
 
     // ✅ GENERAR DATOS ESTRUCTURADOS JSON-LD
     const sportsEvents = data.map(ev => {
