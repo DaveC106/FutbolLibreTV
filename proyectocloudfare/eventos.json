@@ -1,0 +1,84 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "attributes": {
+        "diary_description": "Primera División: Binacional vs Melgar",
+        "diary_hour": "11:30",
+        "date_diary": "2025-07-12",
+        "embeds": {
+          "data": [
+            {
+              "id": "1-1",
+              "attributes": {
+                "embed_iframe": "https://streamtpglobal.com/global1.php?stream=liga1max",
+                "embed_name": "Servidor 1"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "attributes": {
+              "name": "",
+              "image": {
+                "data": {
+                  "attributes": {
+                    "url": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "attributes": {
+        "diary_description": "MLB: New York Yankees vs Chicago Cubs",
+        "diary_hour": "12:00",
+        "date_diary": "2025-07-12",
+        "embeds": {
+          "data": [
+            {
+              "id": "2-1",
+              "attributes": {
+                "embed_iframe": "https://streamtpglobal.com/global1.php?stream=mlb1",
+                "embed_name": "Servidor 1"
+              }
+            },
+            {
+              "id": "2-2",
+              "attributes": {
+                "embed_iframe": "https://streamtpglobal.com/global1.php?stream=disney16",
+                "embed_name": "Servidor 2"
+              }
+            },
+            {
+              "id": "2-3",
+              "attributes": {
+                "embed_iframe": "https://streamtpglobal.com/global1.php?stream=espn5",
+                "embed_name": "Servidor 3"
+              }
+            }
+          ]
+        },
+        "country": {
+          "data": {
+            "attributes": {
+              "name": "",
+              "image": {
+                "data": {
+                  "attributes": {
+                    "url": ""
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
