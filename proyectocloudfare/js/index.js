@@ -1,5 +1,8 @@
 const $ = jQuery;
-const AGENDA_URL = "https://ftvhd.com/diaries.json";
+const AGENDA_URLS = [
+  "https://ftvhd.com/diaries.json", // fuente externa
+  "/eventos.json"                   // tu archivo local
+];
 
 document.addEventListener("DOMContentLoaded", function () {
   obtenerAgenda();
