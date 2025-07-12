@@ -1,62 +1,6 @@
 {
   "data": [
-    {
-      "id": 21214,
-      "attributes": {
-        "diary_hour": "11:00:00",
-        "diary_description": "European Women's Championship: Dinamarca vs Suecia",
-        "date_diary": "2025-07-04",
-        "channels": {
-          "data": []
-        },
-        "embeds": {
-          "data": [
-            {
-              "id": 768,
-              "attributes": {
-                "embed_name": "DISNEY +",
-                "embed_link": null,
-                "embed_iframe": "/embed/eventos.html?r=aHR0cHM6Ly9wZWxvdGFsaWJyZWhkdHYuY29tL2NhbmFsZXMucGhwP3N0cmVhbT1kaXNuZXkz"
-              }
-            }
-          ]
-        },
-        "country": {
-          "data": {
-            "id": 94,
-            "attributes": {
-              "name": "Eurocopa Femenina",
-              "createdAt": "2024-05-31T14:51:34.507Z",
-              "updatedAt": "2024-05-31T14:51:36.114Z",
-              "publishedAt": "2024-05-31T14:51:36.113Z",
-              "image": {
-                "data": {
-                  "id": 240,
-                  "attributes": {
-                    "name": "uefa_europa_women_f100dce35b.png",
-                    "alternativeText": null,
-                    "caption": null,
-                    "width": 64,
-                    "height": 64,
-                    "formats": null,
-                    "hash": "uefa_europa_women_f100dce35b_5eb2c9ac97",
-                    "ext": ".png",
-                    "mime": "image/png",
-                    "size": 1.89,
-                    "url": "/uploads/uefa_europa_women_f100dce35b_5eb2c9ac97.png",
-                    "previewUrl": null,
-                    "provider": "local",
-                    "provider_metadata": null,
-                    "createdAt": "2024-05-31T14:51:19.160Z",
-                    "updatedAt": "2024-05-31T14:51:19.160Z"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+    
     {
       "id": 21215,
       "attributes": {
