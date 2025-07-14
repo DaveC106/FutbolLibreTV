@@ -119,17 +119,15 @@ for (const url of AGENDA_URLS) {
   const imgPath = value.attributes.country?.data?.attributes?.image?.data?.attributes?.url || null;
 
   if (imgPath) {
-    // Detectar origen del evento
-    const sourceUrl = value.attributes.source_url || ""; // <- por si lo manejas tú
-    const isGolazo = value.id.toString().startsWith("22"); // Golazo usa IDs en el 22XXX
-    const isFTV = value.id.toString().startsWith("21"); // FTVHD usa 21XXX
-
-    if (isGolazo) {
-      imageUrl = "https://golazoplay.com" + imgPath;
-    } else if (isFTV) {
+    const eventId = value.id.toString();
+    if (eventId.startsWith("22")) {
+      // GolazoPlay
+      imageUrl = "https://img.golazoplay.com" + imgPath;
+    } else if (eventId.startsWith("21")) {
+      // FTVHD
       imageUrl = "https://ftvhd.com" + imgPath;
     } else {
-      // por defecto usa tu panel
+      // Panel por defecto
       imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
     }
   }
@@ -147,17 +145,16 @@ for (const url of AGENDA_URLS) {
   <div class="servidores" style="margin-top: 8px;">
 `;
 
-      value.attributes.embeds.data.forEach((embed) => {
-        const urlDirecto = embed.attributes.embed_iframe;
-        const nombre = embed.attributes.embed_name;
-        const urlCodificada = btoa(urlDirecto);
+  value.attributes.embeds.data.forEach((embed) => {
+    const urlDirecto = embed.attributes.embed_iframe;
+    const nombre = embed.attributes.embed_name;
+    const urlCodificada = btoa(urlDirecto);
+    html += `<a href="/embed/reproductor.html?r=${urlCodificada}" class="nombre-servidor">➤ ${nombre}</a>`;
+  });
 
-        html += `<a href="/embed/reproductor.html?r=${urlCodificada}" class="nombre-servidor">➤ ${nombre}</a>`;
-      });
-
-      html += `</div></li>`;
-      menuElement.innerHTML += html;
-    });
+  html += `</div></li>`;
+  menuElement.innerHTML += html;
+});
 
   } catch (err) {
     console.error("Error al cargar la agenda:", err);
