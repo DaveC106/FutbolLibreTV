@@ -114,24 +114,37 @@ for (const url of AGENDA_URLS) {
     );
 
     data.forEach((value) => {
-      let imageUrl = "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
+  let imageUrl = "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
 
-      if (value.attributes.country?.data) {
-        imageUrl = "https://panel.futbollibretvs.pe" +
-          value.attributes.country.data.attributes.image.data.attributes.url;
-      }
+  const imgPath = value.attributes.country?.data?.attributes?.image?.data?.attributes?.url || null;
 
-      const hora = convertToUserTimeZone(value.attributes.diary_hour);
-      const nombre = value.attributes.diary_description;
+  if (imgPath) {
+    // Detectar origen del evento
+    const sourceUrl = value.attributes.source_url || ""; // <- por si lo manejas tú
+    const isGolazo = value.id.toString().startsWith("22"); // Golazo usa IDs en el 22XXX
+    const isFTV = value.id.toString().startsWith("21"); // FTVHD usa 21XXX
 
-      let html = `
-  <li class="evento" style="list-style: none;">
-    <div class="fila">
-      <span class="hora-ovalo">${hora}</span>
-      <img src="${imageUrl}" alt="bandera" style="width: 18px; height: 18px; border-radius: 50%;">
-      <span class="nombre-evento">${nombre}</span>
-    </div>
-    <div class="servidores" style="margin-top: 8px;">
+    if (isGolazo) {
+      imageUrl = "https://golazoplay.com" + imgPath;
+    } else if (isFTV) {
+      imageUrl = "https://ftvhd.com" + imgPath;
+    } else {
+      // por defecto usa tu panel
+      imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
+    }
+  }
+
+  const hora = convertToUserTimeZone(value.attributes.diary_hour);
+  const nombre = value.attributes.diary_description;
+
+  let html = `
+<li class="evento" style="list-style: none;">
+  <div class="fila">
+    <span class="hora-ovalo">${hora}</span>
+    <img src="${imageUrl}" alt="bandera" style="width: 18px; height: 18px; border-radius: 50%;">
+    <span class="nombre-evento">${nombre}</span>
+  </div>
+  <div class="servidores" style="margin-top: 8px;">
 `;
 
       value.attributes.embeds.data.forEach((embed) => {
