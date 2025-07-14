@@ -1,7 +1,7 @@
 const $ = jQuery;
 const AGENDA_URLS = [
   "https://golazoplay.com/agenda.json", // fuente externa
-  "https://ftvhd.com/diaries.json"                   // tu archivo local
+  "eventos.json"               // tu archivo local
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
