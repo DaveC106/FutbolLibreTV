@@ -200,5 +200,101 @@ if (placeholder) placeholder.remove();
   }
 </style>
 
+
+<!-- Agrega esto antes del cierre del body (antes de </body>) -->
+<div id="floating-event" class="floating-event">
+  <div class="floating-event-content">
+    <span class="close-floating">&times;</span>
+    <h3>Evento del día</h3>
+    <p>Deportivo Pereira vs Atlético Nacional</p>
+    <a href="https://futbollibretv.pages.dev/embed/reproductor?r=L2VtYmVkL2V2ZW50b3MuaHRtbD9yPWFIUjBjSE02THk5c1lURTBhR1F1WTI5dEwzWnBkbTh2WTJGdVlXd3VjR2h3UDNOMGNtVmhiVDEzYVc1emNHOXlkSE53YkhWeg==" target="_blank" class="floating-btn">Ver ahora</a>
+  </div>
+</div>
+
+<style>
+  /* Estilos para la ventana flotante */
+  .floating-event {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 250px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 9998;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+  }
+  
+  .floating-event h3 {
+    margin-top: 0;
+    color: #fff;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: 8px;
+  }
+  
+  .floating-event p {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .floating-btn {
+    display: block;
+    background: #ff6b6b;
+    color: white;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  
+  .floating-btn:hover {
+    background: #ff5252;
+  }
+  
+  .close-floating {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+  }
+  
+  .close-floating:hover {
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .floating-event {
+      width: 200px;
+      right: 15px;
+      bottom: 15px;
+    }
+  }
+</style>
+
+<script>
+  // Cierra la ventana flotante
+  document.querySelector('.close-floating').addEventListener('click', function() {
+    document.getElementById('floating-event').style.display = 'none';
+  });
+  
+  // Opcional: Mostrar solo si no se ha cerrado antes (usando localStorage)
+  if(localStorage.getItem('eventClosed') !== 'true') {
+    document.getElementById('floating-event').style.display = 'block';
+  }
+  
+  document.querySelector('.close-floating').addEventListener('click', function() {
+    document.getElementById('floating-event').style.display = 'none';
+    localStorage.setItem('eventClosed', 'true');
+  });
+</script>
+
 </body>
 </html>
