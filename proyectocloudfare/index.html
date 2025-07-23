@@ -297,5 +297,15 @@ if (placeholder) placeholder.remove();
   });
 </script>
 
+<script>
+  // Mide usuarios que permanecen más de 10 minutos
+  setTimeout(function () {
+    gtag('event', 'usuario_mas_10_minutos', {
+      event_category: 'Tiempo en página',
+      event_label: 'Visitante activo 10+ min'
+    });
+  }, 600000); // 600,000 ms = 10 minutos
+</script>
+
 </body>
 </html>

@@ -322,5 +322,16 @@ body.modo-oscuro .titulo-link {
 /*]]>/* */
 </script>
 
+
+<script>
+  // Evento para saber si el usuario estuvo más de 10 minutos
+  setTimeout(function() {
+    gtag('event', 'usuario_mas_10_minutos', {
+      event_category: 'Tiempo en página',
+      event_label: window.location.pathname // Esto guarda en qué página fue
+    });
+  }, 600000); // 10 minutos = 600,000 ms
+</script>
+
 </body>
 </html>
