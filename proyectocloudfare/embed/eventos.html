@@ -210,7 +210,28 @@ body.modo-oscuro .titulo-link {
     <iframe id="player" allowfullscreen></iframe>
     <a class="boton" href="#" onclick="location.reload()">Recargar página</a>
   </div>
- 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const iframe = document.getElementById("player");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const encoded = urlParams.get("r");
+
+    if (encoded) {
+      try {
+        const decoded = atob(encoded);
+        console.log("URL decodificada:", decoded);
+        iframe.src = decoded;
+      } catch (error) {
+        console.error("Error al decodificar el parámetro r:", error);
+        iframe.src = ""; // o muestra error
+      }
+    } else {
+      console.warn("No se encontró el parámetro r en la URL");
+      iframe.src = "";
+    }
+  });
+</script>
 
 
   <footer style="background: #111827; color: white; font-family: Arial, sans-serif; font-size: 14px; padding: 20px; margin-top: 40px; text-align: center;">
