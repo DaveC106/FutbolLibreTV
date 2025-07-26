@@ -195,6 +195,10 @@ body.modo-oscuro .titulo-link {
   </style>
 </head>
 <body>
+  <body>
+  <div style="position:fixed;top:0;left:0;background:blue;color:white;z-index:9999;padding:5px;">
+    EVENTOS.HTML EN USO
+  </div>
 
  <header style="display: flex; justify-content: space-between; align-items: center; padding: 18px 20px;">
   <div style="display: flex; align-items: center; gap: 10px;">
@@ -269,15 +273,6 @@ body.modo-oscuro .titulo-link {
   });
 
   aplicarTema();
-</script>
-<script>
-  // Espera 10 minutos (600,000 milisegundos)
-  setTimeout(function() {
-    gtag('event', 'usuario_mas_10_minutos', {
-      event_category: 'Tiempo en página',
-      event_label: window.location.pathname // Esto identifica en qué página fue
-    });
-  }, 600000);
 </script>
 </body>
 
