@@ -102,12 +102,8 @@
   },
   {
     "nombre": "LIVERPOOL FC VS AC MILÁN",
-    "iframe": "https://streamtpglobal.com/global1.php?stream=disney1",
-    "logo": "LIVERPOOL.png"
-  },
-   {
-    "nombre": "LIVERPOOL FC VS AC MILÁN",
-    "iframe": "https://stgruber.world/prob5.php?stream=espnmx",
+    "iframe": "https://streamtpglobal.com/global1.php?stream=espnmx",
     "logo": "LIVERPOOL.png"
   }
+  
 ]
