@@ -1,7 +1,7 @@
 const $ = jQuery;
 const AGENDA_URLS = [
-  "https://golazoplay.com/agenda.json", // fuente externa
-  "https://ftvhd.com/diaries.json"               // tu archivo local
+   "https://ftvhd.com/diaries.json", // fuente externa
+  "https://golazoplay.com/agenda.json"               // tu archivo local
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -122,10 +122,10 @@ for (const url of AGENDA_URLS) {
     const eventId = value.id.toString();
     if (eventId.startsWith("22")) {
       // GolazoPlay
-      imageUrl = "https://img.golazoplay.com" + imgPath;
+      imageUrl = "https://ftvhd.com/" + imgPath;
     } else if (eventId.startsWith("21")) {
       // FTVHD
-      imageUrl = "https://ftvhd.com/diaries.json" + imgPath;
+      imageUrl = "https://img.golazoplay.com" + imgPath;
     } else {
       // Panel por defecto
       imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
