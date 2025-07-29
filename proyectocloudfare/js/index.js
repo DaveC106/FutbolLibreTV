@@ -119,18 +119,8 @@ for (const url of AGENDA_URLS) {
   const imgPath = value.attributes.country?.data?.attributes?.image?.data?.attributes?.url || null;
 
   if (imgPath) {
-    const eventId = value.id.toString();
-    if (eventId.startsWith("21")) {
-      // GolazoPlay
-      imageUrl = "https://ftvhd.com/" + imgPath;
-    } else if (eventId.startsWith("22")) {
-      // FTVHD
-      imageUrl = "https://img.golazoplay.com" + imgPath;
-    } else {
-      // Panel por defecto
-      imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
-    }
-  }
+  imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
+}
 
   const hora = convertToUserTimeZone(value.attributes.diary_hour);
   const nombre = value.attributes.diary_description;
