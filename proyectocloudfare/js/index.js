@@ -125,7 +125,7 @@ for (const url of AGENDA_URLS) {
       imageUrl = "https://img.golazoplay.com" + imgPath;
     } else if (eventId.startsWith("21")) {
       // FTVHD
-      imageUrl = "https://ftvhd.com" + imgPath;
+      imageUrl = "https://ftvhd.com/diaries.json" + imgPath;
     } else {
       // Panel por defecto
       imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
