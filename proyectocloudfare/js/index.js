@@ -122,6 +122,15 @@ for (const url of AGENDA_URLS) {
   imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
 }
 
+//if (eventId.startsWith("22")) {
+  // GolazoPlay
+  //imageUrl = "https://img.golazoplay.com" + imgPath;
+//} else if (eventId.startsWith("21")) {
+  // FTVHD
+ // imageUrl = "https://ftvhd.com/" + imgPath;
+//}
+
+
   const hora = convertToUserTimeZone(value.attributes.diary_hour);
   const nombre = value.attributes.diary_description;
 
