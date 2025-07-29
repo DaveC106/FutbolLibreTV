@@ -322,5 +322,37 @@ if (placeholder) placeholder.remove();
   }, 600000); // 600,000 ms = 10 minutos
 </script>
 
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    const mensaje = document.querySelector("textarea[name='mensaje']").value.toLowerCase();
+
+    const palabrasProhibidas = [
+      "puta", "puto", "putos", "putas", "marica", "maricon", "gonorrea", "gonorreta", "imbecil", "idiota",
+      "hpta", "malparido", "malparida", "perra", "perro", "estupido", "estúpido", "mierda", "mierdero",
+      "cabron", "cabrona", "culero", "cagada", "cagado", "mamaguevo", "mamabicho", "pendejo", "pendeja",
+      "verga", "vergon", "vergudo", "verguda", "chinga", "chingada", "chingado", "chingar", "chingue",
+      "coño", "coñazo", "culiao", "culiá", "culiada", "culiado", "culear", "culeado", "culo", "trasero",
+      "ano", "nalgas", "tetona", "tetón", "tetas", "pechos", "pito", "pene", "verguero", "porn", "porno", "pornografía",
+      "pornografico", "pajero", "masturbar", "masturbación", "masturbando", "sexo", "sexual", "sexoanal",
+      "anal", "vagina", "vaginal", "chocho", "chocha", "chochera", "chichi", "chichis", "chichona", "nalgona",
+      "culo", "culona", "zorra", "zorrón", "zorruda", "culazo", "nalgas", "orgasmo", "eyacular", "eyaculando",
+      "cojer", "coger", "follar", "follando", "follador", "penetrar", "penetración", "mojada", "mojado",
+      "semen", "leche", "corrida", "correrse", "puta madre", "hijo de puta", "hijueputa", "conchudo",
+      "maldito", "maldita", "chupapija", "chupapolla", "sopla bolas", "careverga", "carechimba", "careculo",
+      "caremondá", "caremonda", "marimonda", "pirobo", "cochina", "sucia", "asqueroso", "asquerosa",
+      "mamón", "mamona", "jodido", "jodida", "chimba", "culiando", "culiado", "culiá", "lamer", "lamida",
+      "metida", "meter", "mamada", "mamando", "puñeta", "hueva", "vergazo", "pedo", "enculada", "enculado",
+      "reventada", "reventado", "desnuda", "desnudo", "nude", "nudes"
+    ];
+
+    const contieneProhibida = palabrasProhibidas.some(palabra => mensaje.includes(palabra));
+
+    if (contieneProhibida) {
+      e.preventDefault();
+      alert("Tu mensaje contiene palabras ofensivas o inapropiadas. Por favor, intenta de nuevo con respeto.");
+    }
+  });
+</script>
+
 </body>
 </html>
