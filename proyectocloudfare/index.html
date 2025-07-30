@@ -214,8 +214,7 @@ if (placeholder) placeholder.remove();
   }
 </style>
 
-
-</body>
+<!--
 <div id="floating-event" class="floating-event">
   <div class="floating-event-content">
     <span class="close-floating">&times;</span>
@@ -226,7 +225,6 @@ if (placeholder) placeholder.remove();
 </div>
 
 <style>
-  /* Estilos para la ventana flotante */
   .floating-event {
     position: fixed;
     bottom: 30px;
@@ -295,21 +293,21 @@ if (placeholder) placeholder.remove();
 </style>
 
 <script>
-  // Cierra la ventana flotante
   document.querySelector('.close-floating').addEventListener('click', function() {
     document.getElementById('floating-event').style.display = 'none';
   });
-  
-  // Opcional: Mostrar solo si no se ha cerrado antes (usando localStorage)
+
   if(localStorage.getItem('eventClosed') !== 'true') {
     document.getElementById('floating-event').style.display = 'block';
   }
-  
+
   document.querySelector('.close-floating').addEventListener('click', function() {
     document.getElementById('floating-event').style.display = 'none';
     localStorage.setItem('eventClosed', 'true');
   });
 </script>
+-->
+
 
 
 <script>
