@@ -20,6 +20,12 @@
   text-decoration: none;
   transition: color 0.3s;
 }
+
+  @media screen and (max-width: 1023px) {
+    .promo-header {
+      display: none;
+    }
+  }
 body.modo-oscuro #eventos {
   background: #121212; /* o el color oscuro que prefieras */
 }
