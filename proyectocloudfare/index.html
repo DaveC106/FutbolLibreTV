@@ -69,6 +69,7 @@
   }
 }
 </script>
+
 </head>
 <body>
   <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; flex-wrap: wrap;">
@@ -84,14 +85,18 @@
       
   </div>
     
-
-  <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
-  <div id="destacados-header" class="destacados-header" style="text-align: right;"></div>
-  <button id="toggle-tema" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
-  <button id="menu-movil-btn" class="menu-movil-btn" aria-label="Mostrar canales destacados">&#9776;</button>
+<div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+ <nav class="header-nav">
+  <a href="#canales-grid" class="nav-link">Canales</a>
+  <a href="#donacion-section" class="nav-link">Apóyanos</a>
+  <a href="#sugerencias-form" class="nav-link">Deja tus sugerencias</a>
+</nav>
+   <button id="menu-movil-btn" class="menu-movil-btn" aria-label="Mostrar menú">&#9776;</button>
   <div id="menu-movil-lista" class="menu-movil-lista"></div>
+  <button id="toggle-tema" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>
 </div>
 </header>
+
 
   
 
@@ -292,10 +297,7 @@
   </form>
 </section>
 
-<!-- Popup de sugerencias -->
-<div id="sugerencia-popup" class="sugerencia-popup">
-  <p>💡 ¿Tienes una sugerencia? <a href="#sugerencias-form">Haz click aquí</a></p>
-</div>
+
   
 <script>
   document.getElementById("sugerencias-form").addEventListener("submit", function (e) {
@@ -372,47 +374,45 @@
 
   <!-- Canales destacados + carga dinámica -->
   <script defer>
-    const nombresDestacados = ["ESPN", "WinSports", "TYCSPORTS", "Dsports", "DAZN"];
     fetch('canales_con_logo.json')
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('canales-grid');
-        data.forEach(canal => {
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-  <h3>${canal.nombre}</h3>
-  <img src="${canal.logo}" alt="${canal.nombre}" width="100" height="100" style="object-fit: contain;">
-  <button onclick="window.open('ver.html?canal=${encodeURIComponent(canal.nombre)}', '_blank')"> <strong>Ver canal</strong></button>
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById('canales-grid');
+    data.forEach(canal => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <h3>${canal.nombre}</h3>
+        <img src="${canal.logo}" alt="${canal.nombre}" width="100" height="100" style="object-fit: contain;">
+        <button onclick="window.open('ver.html?canal=${encodeURIComponent(canal.nombre)}', '_blank')"><strong>Ver canal</strong></button>
+      `;
+      container.appendChild(card);
+    });
+    
+    const placeholder = document.getElementById("placeholder-canales");
+    if (placeholder) placeholder.remove();
+  });
+
+// Nuevo menú móvil con las 3 opciones
+const menuMovilBtn = document.getElementById('menu-movil-btn');
+const menuMovilLista = document.getElementById('menu-movil-lista');
+
+menuMovilLista.innerHTML = `
+  <a href="#canales-grid">Canales</a>
+  <a href="#donacion-section">Apóyanos</a>
+  <a href="#sugerencias-form">Deja tus sugerencias</a>
 `;
-          container.appendChild(card);
-        });
-        const placeholder = document.getElementById("placeholder-canales");
-if (placeholder) placeholder.remove();
 
-        const headerDestacados = document.getElementById('destacados-header');
-        const menuMovilBtn = document.getElementById('menu-movil-btn');
-        const menuMovilLista = document.getElementById('menu-movil-lista');
+menuMovilBtn.addEventListener('click', () => {
+  menuMovilLista.classList.toggle('active');
+});
 
-        if (headerDestacados && nombresDestacados.length > 0) {
-          headerDestacados.innerHTML = nombresDestacados.map(nombre =>
-            `<a href="ver.html?canal=${encodeURIComponent(nombre)}" target="_blank" class="destacado-link">${nombre}</a>`
-          ).join(" · ");
-          menuMovilLista.innerHTML = nombresDestacados.map(nombre =>
-            `<a href="ver.html?canal=${encodeURIComponent(nombre)}" target="_blank">${nombre}</a>`
-          ).join("");
-        }
-
-        menuMovilBtn.addEventListener('click', () => {
-          menuMovilLista.style.display = menuMovilLista.style.display === 'block' ? 'none' : 'block';
-        });
-
-        document.addEventListener('click', (e) => {
-          if (!menuMovilBtn.contains(e.target) && !menuMovilLista.contains(e.target)) {
-            menuMovilLista.style.display = 'none';
-          }
-        });
-      });
+document.addEventListener('click', (e) => {
+  if (!menuMovilBtn.contains(e.target) && !menuMovilLista.contains(e.target)) {
+    menuMovilLista.classList.remove('active');
+  }
+});
+   
   </script>
   <script src="js/tema.js" defer></script>
 
@@ -420,7 +420,6 @@ if (placeholder) placeholder.remove();
 <div id="sugerencia-popup" class="sugerencia-popup">
   <p>💡 ¿Tienes una sugerencia? <a href="#sugerencias-form">Haz click aquí</a></p>
 </div>
-
 <style>
   .sugerencia-popup {
     position: fixed;
@@ -456,6 +455,69 @@ if (placeholder) placeholder.remove();
     opacity: 0;
     transform: translateX(-120%); /* Se va hacia la izquierda otra vez */
   }
+
+
+  /* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+  .header-nav {
+    display: none; /* Oculta el menú de navegación en móviles */
+  }
+
+  .menu-movil-btn {
+    display: block; /* Asegura que el botón de las tres barras sea visible */
+  }
+
+  .menu-movil-lista {
+    display: none; /* Oculta el menú móvil por defecto */
+    position: absolute;
+    top: 60px; /* Ajusta según la altura del header */
+    right: 20px;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  .menu-movil-lista.active {
+    display: block; /* Muestra el menú móvil cuando está activo */
+  }
+
+  .menu-movil-lista a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+  }
+
+  .menu-movil-lista a:hover {
+    background: #f1f1f1;
+  }
+
+  /* Soporte para modo oscuro */
+  body.modo-oscuro .menu-movil-lista {
+    background: #1e1e1e;
+  }
+
+  body.modo-oscuro .menu-movil-lista a {
+    color: #f1f1f1;
+  }
+
+  body.modo-oscuro .menu-movil-lista a:hover {
+    background: #2a2a2a;
+  }
+}
+
+/* Oculta el botón de las tres barras y el menú móvil en pantallas grandes */
+@media (min-width: 769px) {
+  .menu-movil-btn {
+    display: none; /* Oculta el botón de las tres barras */
+  }
+  .menu-movil-lista {
+    display: none; /* Oculta el menú móvil */
+  }
+}
 </style>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
