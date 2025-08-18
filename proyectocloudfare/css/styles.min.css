@@ -202,6 +202,7 @@ body.modo-oscuro .card button:hover {
         color: black; /* Color por defecto (modo claro) */
         transition: color 0.3s ease; /* Transición suave para el cambio de color */
         font-weight: bold;
+        font-size: 18px;
     }
 
     /* Estilo para modo oscuro */
@@ -212,5 +213,9 @@ body.modo-oscuro .card button:hover {
     /* Estilo hover para ambos modos */
     .nav-link:hover {
         opacity: 0.8;
+        color:#15803d;
+    }
+    body.modo-oscuro .nav-link:hover {
+        color: #11e25d; /* Color en modo oscuro al pasar el mouse */
     }
 }
