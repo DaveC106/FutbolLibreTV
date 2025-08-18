@@ -91,3 +91,106 @@ body.modo-oscuro .hora-ovalo {
   background: #222222;
   color: #fff;
 }
+
+
+/* Estilos existentes para .canales-grid */
+.canales-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 10px 40px;
+}
+
+/* Estilos para las tarjetas */
+.card {
+  width: 180px; /* Ancho original para pantallas > 402px */
+  border: 1px solid #9c9b9b;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / .05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  background: #f5f5f5;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.card button {
+  margin: 10px;
+  background: #15803d;
+  color: #fff;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.card button:hover {
+  background: #27ae60;
+}
+
+/* Modo oscuro */
+body.modo-oscuro .card {
+  background: #1e1e1e;
+  color: #f5f5f5;
+  box-shadow: none;
+}
+
+body.modo-oscuro .card h3 {
+  background: #1e1e1e;
+  color: #f1f1f1;
+  border-bottom: 1px solid #333;
+}
+
+body.modo-oscuro .card button {
+  background: #25d366;
+}
+
+body.modo-oscuro .card button:hover {
+  background: #1e9c4f;
+}
+
+/* Media query para pantallas de 402px o menos */
+@media (max-width: 402px) {
+  .canales-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Forzar 2 columnas */
+    gap: 10px; /* Reducir espacio entre tarjetas */
+    padding: 0 5px 30px; /* Reducir padding lateral */
+    justify-items: center; /* Centrar las tarjetas en cada columna */
+  }
+  .card {
+    width: 100%; /* Ocupa el ancho de la columna */
+    max-width: 140px; /* Límite para evitar que se estire demasiado */
+  }
+  .card h3 {
+    font-size: 14px; /* Más pequeño para ajustar */
+    padding: 6px 0;
+    margin: 8px 0;
+  }
+  .card img {
+    width: 70px; /* Reducir tamaño de la imagen */
+    height: 70px;
+  }
+  .card button {
+    padding: 6px 10px; /* Botón más compacto */
+    font-size: 12px;
+    margin: 8px;
+  }
+}
