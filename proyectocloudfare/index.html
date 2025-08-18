@@ -285,51 +285,66 @@ if (placeholder) placeholder.remove();
   });
 </script>
 
-
-
+-->
+<section class="suggestion-section">
+  <h2>Buzón de Sugerencias y Mejoras</h2>
+  <form id="sugerencias-form">
+    <textarea name="entry.1418657092" placeholder="Escribe tu sugerencia aquí..." required></textarea>
+    <button type="submit">Enviar Sugerencia</button>
+  </form>
+</section>
 
 <script>
-  // Mide usuarios que permanecen más de 10 minutos
-  setTimeout(function () {
-    gtag('event', 'usuario_mas_10_minutos', {
-      event_category: 'Tiempo en página',
-      event_label: 'Visitante activo 10+ min'
-    });
-  }, 600000); // 600,000 ms = 10 minutos
-</script>
-<!--
-<script>
-  document.querySelector("form").addEventListener("submit", function (e) {
-    const mensaje = document.querySelector("textarea[name='mensaje']").value.toLowerCase();
+  document.getElementById("sugerencias-form").addEventListener("submit", function (e) {
+    e.preventDefault();
 
+    const form = e.target;
+    const data = new FormData(form);
+
+    // Validación de palabras prohibidas
+    const mensaje = (data.get("entry.1418657092") || "").toLowerCase();
     const palabrasProhibidas = [
-      "puta", "puto", "putos", "putas", "marica", "maricon", "gonorrea", "gonorreta", "imbecil", "idiota",
-      "hpta", "malparido", "malparida", "perra", "perro", "estupido", "estúpido", "mierda", "mierdero",
-      "cabron", "cabrona", "culero", "cagada", "cagado", "mamaguevo", "mamabicho", "pendejo", "pendeja",
-      "verga", "vergon", "vergudo", "verguda", "chinga", "chingada", "chingado", "chingar", "chingue",
-      "coño", "coñazo", "culiao", "culiá", "culiada", "culiado", "culear", "culeado", "culo", "trasero",
-      "ano", "nalgas", "tetona", "tetón", "tetas", "pechos", "pito", "pene", "verguero", "porn", "porno", "pornografía",
-      "pornografico", "pajero", "masturbar", "masturbación", "masturbando", "sexo", "sexual", "sexoanal",
-      "anal", "vagina", "vaginal", "chocho", "chocha", "chochera", "chichi", "chichis", "chichona", "nalgona",
-      "culo", "culona", "zorra", "zorrón", "zorruda", "culazo", "nalgas", "orgasmo", "eyacular", "eyaculando",
-      "cojer", "coger", "follar", "follando", "follador", "penetrar", "penetración", "mojada", "mojado",
-      "semen", "leche", "corrida", "correrse", "puta madre", "hijo de puta", "hijueputa", "conchudo",
-      "maldito", "maldita", "chupapija", "chupapolla", "sopla bolas", "careverga", "carechimba", "careculo",
-      "caremondá", "caremonda", "marimonda", "pirobo", "cochina", "sucia", "asqueroso", "asquerosa",
-      "mamón", "mamona", "jodido", "jodida", "chimba", "culiando", "culiado", "culiá", "lamer", "lamida",
-      "metida", "meter", "mamada", "mamando", "puñeta", "hueva", "vergazo", "pedo", "enculada", "enculado",
-      "reventada","inutil", "reventado", "desnuda", "desnudo", "nude", "nudes"
+      "puta","puto","putos","putas","marica","maricon","gonorrea","gonorreta","imbecil","idiota",
+      "hpta","malparido","malparida","perra","perro","estupido","estúpido","mierda","mierdero",
+      "cabron","cabrona","culero","cagada","cagado","mamaguevo","mamabicho","pendejo","pendeja",
+      "verga","vergon","vergudo","verguda","chinga","chingada","chingado","chingar","chingue",
+      "coño","coñazo","culiao","culiá","culiada","culiado","culear","culeado","culo","trasero",
+      "ano","nalgas","tetona","tetón","tetas","pechos","pito","pene","verguero","porn","porno","pornografía",
+      "pornografico","pajero","masturbar","masturbación","masturbando","sexo","sexual","sexoanal",
+      "anal","vagina","vaginal","chocho","chocha","chochera","chichi","chichis","chichona","nalgona",
+      "culo","culona","zorra","zorrón","zorruda","culazo","nalgas","orgasmo","eyacular","eyaculando",
+      "cojer","coger","follar","follando","follador","penetrar","penetración","mojada","mojado",
+      "semen","leche","corrida","correrse","puta madre","hijo de puta","hijueputa","conchudo",
+      "maldito","maldita","chupapija","chupapolla","sopla bolas","careverga","carechimba","careculo",
+      "caremondá","caremonda","marimonda","pirobo","cochina","sucia","asqueroso","asquerosa",
+      "mamón","mamona","jodido","jodida","chimba","culiando","culiado","culiá","lamer","lamida",
+      "metida","meter","mamada","mamando","puñeta","hueva","vergazo","pedo","enculada","enculado",
+      "reventada","inutil","reventado","desnuda","desnudo","nude","nudes"
     ];
 
     const contieneProhibida = palabrasProhibidas.some(palabra => mensaje.includes(palabra));
-
     if (contieneProhibida) {
-      e.preventDefault();
-      alert("Tu mensaje contiene palabras ofensivas o inapropiadas. Por favor, intenta de nuevo con respeto.");
+      alert("⚠️ Tu mensaje contiene palabras ofensivas o inapropiadas. Escríbelo con respeto.");
+      return;
     }
+
+    // Preparamos los datos y enviamos al Google Form
+    const query = new URLSearchParams(data).toString();
+
+    fetch("https://docs.google.com/forms/d/e/1FAIpQLSfYLj8DcZn9furS86buqcNmecOm8tMVLNQTrymr1_7oJBXhPA/formResponse", {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: query
+    }).then(() => {
+      alert("✅ ¡Gracias por tu sugerencia!");
+      form.reset();
+    }).catch(() => {
+      alert("❌ Hubo un error al enviar. Intenta más tarde.");
+    });
   });
 </script>
--->
+
 
 </body>
 </html>
