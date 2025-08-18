@@ -445,26 +445,27 @@ if (placeholder) placeholder.remove();
     transform: translateX(-120%); /* Se va hacia la izquierda otra vez */
   }
 </style>
-
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const popup = document.getElementById("sugerencia-popup");
-    const yaMostrado = localStorage.getItem("sugerenciaPopup");
+    const ultimaVez = localStorage.getItem("sugerenciaPopupTime");
+    const ahora = Date.now();
+    const cincoHoras = 5 * 60 * 60 * 1000; // 5 horas en ms
 
-    if (!yaMostrado) {
-      // Mostrar el popup después de 2s
+    // Si nunca se ha mostrado o ya pasaron 5 horas, mostrarlo
+    if (!ultimaVez || (ahora - ultimaVez) > cincoHoras) {
       setTimeout(() => {
         popup.classList.add("show");
-      }, 3000);
+      }, 2000);
 
-      // Ocultarlo a los 7s con animación de salida
+      // Ocultar después de 7 segundos
       setTimeout(() => {
         popup.classList.remove("show");
         popup.classList.add("hide");
       }, 8000);
 
-      // Guardar en localStorage para que no vuelva a salir
-      localStorage.setItem("sugerenciaPopup", "true");
+      // Guardar la hora actual
+      localStorage.setItem("sugerenciaPopupTime", ahora);
     }
   });
 </script>
