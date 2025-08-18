@@ -108,29 +108,58 @@
     <div class="canales-grid" id="canales-grid">
   <p id="placeholder-canales">Cargando canales...</p>
 </div>
-
-    <div class="faq-section"></div>
   </main>
+
   <style>
-  .suggestion-section {
-    max-width: 600px;
-    margin: 50px auto;
+  /* Estilos base para ambas secciones */
+  .donation-container, .suggestion-section {
+    max-width: 520px; /* Mismo ancho para ambas secciones */
+    margin: 30px auto;
     padding: 30px;
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     text-align: center;
+    transition: all 0.3s ease;
   }
 
+  /* Estilos específicos para la sección de donación */
+  .donation-text {
+    font-size: 17px;
+    color: #111;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+  }
+
+  .donation-text strong {
+    color: #15803d;
+  }
+
+  .donation-button-container {
+    display: inline-block;
+    transition: transform 0.2s;
+  }
+
+  /* Estilos específicos para la sección de sugerencias */
   .suggestion-section h2 {
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 20px;
     color: #333;
+    transition: color 0.3s ease;
+  }
+
+  .suggestion-section form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todos los elementos hijos */
+    width: 100%;
   }
 
   .suggestion-section textarea {
     width: 100%;
+    max-width: 480px; /* Ancho máximo con padding incluido */
     min-height: 150px;
     padding: 12px;
     border: 1px solid #ddd;
@@ -139,16 +168,16 @@
     resize: vertical;
     outline: none;
     margin-bottom: 20px;
-    transition: border 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   .suggestion-section textarea:focus {
-    border-color: #15803d; /* Verde WhatsApp */
+    border-color: #15803d;
     box-shadow: 0 0 6px rgba(37, 211, 102, 0.4);
   }
 
   .suggestion-section button {
-    background-color: #15803d; /* Verde WhatsApp */
+    background-color: #15803d;
     color: #fff;
     border: none;
     padding: 12px 24px;
@@ -156,7 +185,8 @@
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.3s ease;
+    width: auto; /* Ancho automático basado en el contenido */
   }
 
   .suggestion-section button:hover {
@@ -167,89 +197,106 @@
   .suggestion-section button:active {
     transform: translateY(0);
   }
-</style> 
 
-<style>
-/* 💬 Estilo del buzón de sugerencias */
-.sugerencia-popup {
-  position: fixed;
-  top: 80px;
-  left: 20px;
-  background: #15803d; /* verde WhatsApp */
-  color: white;
-  padding: 12px 20px;
-  border-radius: 12px;
-  font-size: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  opacity: 0;
-  transform: translateX(-120%);
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  z-index: 1000;
-  pointer-events: none;
-}
+  /* Estilos para modo oscuro */
+  body.modo-oscuro .donation-container,
+  body.modo-oscuro .suggestion-section {
+    background-color: #1e1e1e;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+  }
 
-.sugerencia-popup a {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: underline;
-  pointer-events: auto;
-}
+  body.modo-oscuro .donation-text,
+  body.modo-oscuro .suggestion-section h2 {
+    color: #f1f1f1;
+  }
 
-.sugerencia-popup.show {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
+  body.modo-oscuro .donation-text strong {
+    color: #25d366;
+  }
 
-.sugerencia-popup.hide {
-  opacity: 0;
-  transform: translateX(-120%);
-}
+  body.modo-oscuro .suggestion-section textarea {
+    background: #2a2a2a;
+    color: #f1f1f1;
+    border: 1px solid #15803d;
+  }
 
-/* 🌙 Cuando el body está en modo oscuro */
-body.modo-oscuro .sugerencia-popup {
-  background: #222;   /* gris oscuro */
-  color: #eee;
-}
+  /* Ajuste para el botón de Buy Me a Coffee en modo oscuro */
+  body.modo-oscuro .bmc-btn {
+    filter: brightness(0.9) contrast(1.2);
+  }
 
-body.modo-oscuro .sugerencia-popup a {
-  color: #15803d;  /* verde brillante en modo oscuro */
-}
+  /* Estilos para el popup de sugerencias */
+  .sugerencia-popup {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    background: #15803d;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(-120%);
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    z-index: 1000;
+    pointer-events: none;
+  }
 
-/* 🌙 Modo oscuro para el buzón principal */
-body.modo-oscuro .suggestion-section {
-  background: #1e1e1e;  /* fondo oscuro */
-  color: #f1f1f1;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-}
+  .sugerencia-popup a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    pointer-events: auto;
+  }
 
-/* Ajustar el textarea */
-body.modo-oscuro .suggestion-section textarea {
-  background: #2a2a2a;
-  color: #f1f1f1;
-  border: 1px solid #444;
-}
+  .sugerencia-popup.show {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+  }
 
-/* Ajustar el título */
-body.modo-oscuro .suggestion-section h2 {
-  color: #f5f5f5;
-}
+  .sugerencia-popup.hide {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+
+  body.modo-oscuro .sugerencia-popup {
+    background: #222;
+    color: #eee;
+  }
+
+  body.modo-oscuro .sugerencia-popup a {
+    color: #15803d;
+  }
 </style>
-<!--<div style="text-align:center; margin-top:20px;">
-  <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-  <script type='text/javascript'>
-    kofiwidget2.init('Support me on Ko-fi', '#15803d', 'L3L71JVDQF');
-    kofiwidget2.draw();
-  </script>
-</div>-->
 
-  <section class="suggestion-section">
+<!-- Sección de donación -->
+<div id="donacion-section" class="donation-container">
+  <p class="donation-text">
+    ⚽ ¡Gracias por disfrutar <strong>Futbol Libre</strong>!<br>
+    Cada partido que ves es posible gracias a personas como tú. Apóyanos y ayuda a que el fútbol siga siendo gratis para todos. <strong>¡Haz la diferencia hoy!</strong>
+  </p>
+  
+  <div class="donation-button-container">
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="futbolibrenet" data-color="#15803d" data-emoji="" data-font="Arial" data-text="Apoyar el proyecto" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#ffffff"></script>
+  </div>
+</div>
+
+<!-- Sección de sugerencias -->
+<section class="suggestion-section">
   <h2>Buzón de Sugerencias y Mejoras</h2>
   <form id="sugerencias-form">
-    <textarea name="entry.1418657092" placeholder="Escribe tu sugerencia aquí..." required></textarea>
+    <textarea name="entry.1418657092" placeholder="Tienes alguna sugerencia, queja o idea? Cuéntanos qué canal, liga o partido te gustaría ver..." required></textarea>
     <button type="submit">Enviar Sugerencia</button>
   </form>
 </section>
+
+<!-- Popup de sugerencias -->
+<div id="sugerencia-popup" class="sugerencia-popup">
+  <p>💡 ¿Tienes una sugerencia? <a href="#sugerencias-form">Haz click aquí</a></p>
+</div>
+  
 <script>
   document.getElementById("sugerencias-form").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -293,7 +340,7 @@ body.modo-oscuro .suggestion-section h2 {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: query
     }).then(() => {
-      alert("✅ ¡Gracias por tu sugerencia!");
+      alert("✅ ¡Gracias por tu sugerencia! Valoramos tu feedback y trabajaremos para mejorar lo antes posible.");
       form.reset();
     }).catch(() => {
       alert("❌ Hubo un error al enviar. Intenta más tarde.");
@@ -368,107 +415,6 @@ if (placeholder) placeholder.remove();
       });
   </script>
   <script src="js/tema.js" defer></script>
-
-  <!-- Botón de Telegram flotante 
-<a href="https://t.me/futbol_libretv" target="_blank" id="telegram-btn" aria-label="Canal de Telegram">
-  <img src="logotelegram.png" alt="Telegram" style="width: 55px; height: 55px;">
-</a>-->
-
-
-
-<!--
-<div id="floating-event" class="floating-event">
-  <div class="floating-event-content">
-    <span class="close-floating">&times;</span>
-    <h3>Evento del día</h3>
-    <p>Atlético Nacional vs Cúcuta Deportivo</p>
-    <a href="https://futbollibretv.pages.dev/embed/reproductor?r=L2VtYmVkL2V2ZW50b3MuaHRtbD9yPWFIUjBjSE02THk5c1lURTBhR1F1WTI5dEwzWnBkbTh2WTJGdVlXeGxjeTV3YUhBL2MzUnlaV0Z0UFhkcGJuTndiM0owYzNCc2RYTUs=" target="_blank" class="floating-btn">Ver ahora</a>
-  </div>
-</div>
-
-<style>
-  .floating-event {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 270px;
-    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
-    color: rgb(0, 0, 0);
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 9998;
-    transform: translateX(0);
-    transition: all 0.3s ease;
-  }
-  
-  .floating-event h3 {
-    margin-top: 0;
-    color: #000000;
-    font-size: 18px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding-bottom: 8px;
-    text-align: center;
-  }
-  
-  .floating-event p {
-    margin: 10px 0;
-    font-size: 16px;
-  }
-  
-  .floating-btn {
-    display: block;
-    background: #046c00;
-    color: white;
-    text-align: center;
-    padding: 8px 0;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-  
-  .floating-btn:hover {
-    background: #00ff5e;
-  }
-  
-  .close-floating {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .close-floating:hover {
-    color: white;
-  }
-  
-  @media (max-width: 768px) {
-    .floating-event {
-      width: 200px;
-      right: 15px;
-      bottom: 15px;
-    }
-  }
-</style>
-
-<script>
-  document.querySelector('.close-floating').addEventListener('click', function() {
-    document.getElementById('floating-event').style.display = 'none';
-  });
-
-  if(localStorage.getItem('eventClosed') !== 'true') {
-    document.getElementById('floating-event').style.display = 'block';
-  }
-
-  document.querySelector('.close-floating').addEventListener('click', function() {
-    document.getElementById('floating-event').style.display = 'none';
-    localStorage.setItem('eventClosed', 'true');
-  });
-</script>
--->
 
 <!-- Notificación flotante -->
 <div id="sugerencia-popup" class="sugerencia-popup">
