@@ -58,7 +58,7 @@ body.modo-oscuro .agenda-box,
 body.modo-oscuro .card,
 body.modo-oscuro header,
 body.modo-oscuro footer {
-  background-color: #1e1e1e;
+  background-color: #222;
   color: #f5f5f5;
   box-shadow: none;
 }
