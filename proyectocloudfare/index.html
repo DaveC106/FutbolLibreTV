@@ -403,5 +403,71 @@ if (placeholder) placeholder.remove();
   });
 </script>
 -->
+
+<!-- Notificación flotante -->
+<div id="sugerencia-popup" class="sugerencia-popup">
+  <p>💡 ¿Tienes una sugerencia? <a href="#sugerencias-form">Haz click aquí</a></p>
+</div>
+
+<style>
+  .sugerencia-popup {
+    position: fixed;
+    top: 80px; /* Ajusta según la altura de tu header */
+    left: 20px;
+    background: #15803d; /* Verde WhatsApp */
+    color: rgb(255, 255, 255);
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(-120%); /* Arranca fuera de pantalla a la izquierda */
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .sugerencia-popup a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+    pointer-events: auto;
+  }
+
+  .sugerencia-popup.show {
+    opacity: 1;
+    transform: translateX(0); /* Entra desde la izquierda */
+    pointer-events: auto;
+  }
+
+  .sugerencia-popup.hide {
+    opacity: 0;
+    transform: translateX(-120%); /* Se va hacia la izquierda otra vez */
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("sugerencia-popup");
+    const yaMostrado = localStorage.getItem("sugerenciaPopup");
+
+    if (!yaMostrado) {
+      // Mostrar el popup después de 2s
+      setTimeout(() => {
+        popup.classList.add("show");
+      }, 3000);
+
+      // Ocultarlo a los 7s con animación de salida
+      setTimeout(() => {
+        popup.classList.remove("show");
+        popup.classList.add("hide");
+      }, 11000);
+
+      // Guardar en localStorage para que no vuelva a salir
+      localStorage.setItem("sugerenciaPopup", "true");
+    }
+  });
+</script>
+
 </body>
 </html>
