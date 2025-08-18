@@ -201,6 +201,7 @@ body.modo-oscuro .card button:hover {
         text-decoration: none; /* Elimina el subrayado */
         color: black; /* Color por defecto (modo claro) */
         transition: color 0.3s ease; /* Transición suave para el cambio de color */
+        font-weight: bold;
     }
 
     /* Estilo para modo oscuro */
