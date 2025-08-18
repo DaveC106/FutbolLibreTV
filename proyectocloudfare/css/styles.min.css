@@ -1,5 +1,32 @@
 
-  html,body{height:100%;display:flex;flex-direction:column;margin:0}body{background:#fff;color:#222;font-family:Arial,sans-serif}header{background:#fff;padding:18px 20px;font-size:22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 16px -8px rgb(0 0 0 / .6),0 2px 0 0 #e0e0e0}header .logo-btn{background:#fff;border:1.5px solid #1ed760;border-radius:6px;padding:4px 7px;cursor:pointer;display:flex;align-items:center}header .logo-btn img{width:28px;height:28px}header .texto-logo{text-decoration:none;color:#15803d}.texto-logo{font-size:28px;font-weight:700;color:#000}.logo-link{display:flex;align-items:center}.logo-img{width:44px;height:44px;display:block}main{flex:1;max-width:900px;margin:40px auto 0 auto;padding:0 10px;text-align:center}.titulo-central{font-size:40px;font-weight:700;margin:8px 0 10px 0;color:#15803d}.descripcion-central{font-size:22px;color:#444;margin-bottom:10px;margin-top:0}.descripcion-central strong{color:#1ed760}.agenda-box{margin:40px auto 0 auto;max-width:900px;box-shadow:0 2px 12px 0 rgb(0 0 0 / .07);border-radius:6px;overflow:hidden;background:#fff}.agenda-titulo{background:#15803d;color:#fff;font-size:18px;font-weight:700;padding:12px 0;text-align:center;letter-spacing:.5px;margin:0}
+  html,body{height:100%;display:flex;flex-direction:column;margin:0}body
+  {background:#fff;color:#222;font-family:Arial,sans-serif}
+  /* Estilos para los nav-link en pantallas de 768px o más */
+@media (min-width: 768px) {
+    .nav-link {
+        text-decoration: none; /* Elimina el subrayado */
+        color: black; /* Color por defecto (modo claro) */
+        transition: color 0.2s ease; /* Transición suave para el cambio de color */
+        font-weight: bold;
+        font-size: 17px;
+        margin: 0 8px;
+    }
+
+    /* Estilo para modo oscuro */
+    body.modo-oscuro .nav-link {
+        color: white; /* Color en modo oscuro */
+    }
+
+    /* Estilo hover para ambos modos */
+    .nav-link:hover {
+        opacity: 0.8;
+        color:#15803d;
+    }
+    body.modo-oscuro .nav-link:hover {
+        color: #11e25d; /* Color en modo oscuro al pasar el mouse */
+    }
+}
+  header{background:#fff;padding:18px 20px;font-size:22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 16px -8px rgb(0 0 0 / .6),0 2px 0 0 #e0e0e0}header .logo-btn{background:#fff;border:1.5px solid #1ed760;border-radius:6px;padding:4px 7px;cursor:pointer;display:flex;align-items:center}header .logo-btn img{width:28px;height:28px}header .texto-logo{text-decoration:none;color:#15803d}.texto-logo{font-size:28px;font-weight:700;color:#000}.logo-link{display:flex;align-items:center}.logo-img{width:44px;height:44px;display:block}main{flex:1;max-width:900px;margin:40px auto 0 auto;padding:0 10px;text-align:center}.titulo-central{font-size:40px;font-weight:700;margin:8px 0 10px 0;color:#15803d}.descripcion-central{font-size:22px;color:#444;margin-bottom:10px;margin-top:0}.descripcion-central strong{color:#1ed760}.agenda-box{margin:40px auto 0 auto;max-width:900px;box-shadow:0 2px 12px 0 rgb(0 0 0 / .07);border-radius:6px;overflow:hidden;background:#fff}.agenda-titulo{background:#15803d;color:#fff;font-size:18px;font-weight:700;padding:12px 0;text-align:center;letter-spacing:.5px;margin:0}
   #eventos{background:#fff;padding:0;margin:0}
   .evento{border-bottom:1px solid #e0e0e0;padding:2px 4px;font-size:14px;margin-bottom:0;cursor:pointer;background:#fff}.evento:last-child{border-bottom:none}.evento>.fila{display:flex;align-items:center;gap:8px;flex-direction:row;justify-content:flex-start;padding:0;margin:0}.fila{display:flex;align-items:center;gap:6px}.info-evento{display:flex;align-items:center;gap:3px;padding:0;margin:0}.nombre-evento{font-size:13px;line-height:1.2}.evento span{font-weight:700;color:#333}.evento .info{font-weight:700;text-align:left;display:flex;flex-direction:column}.hora-ovalo{font-size:13px;background:#e1f5e9;color:#ffffff;padding:5px 5px;border-radius:20px;display:inline-block;font-weight:700}.evento button{background:#1ed760;color:#fff;border:none;border-radius:4px;padding:6px 14px;font-size:14px;cursor:pointer}.evento button:hover{background:#159c41}.evento:hover{background-color:#d3ffe4;transition:background 0.2s ease;cursor:pointer}.titulo-canales{margin:50px 0 20px;font-size:24px;font-weight:700;color:#15803d}.card{width:180px;border:1px solid #9c9b9b;border-radius:8px;background:#fff;box-shadow:0 2px 8px rgb(0 0 0 / .05);display:flex;flex-direction:column;align-items:center}
   .card h3{margin:10px 0;font-size:18px;background:#f5f5f5;padding:8px 0px;border-bottom:1px solid #ddd;width:100%}
@@ -193,30 +220,4 @@ body.modo-oscuro .card button:hover {
     font-size: 12px;
     margin: 8px;
   }
-}
-
-/* Estilos para los nav-link en pantallas de 768px o más */
-@media (min-width: 768px) {
-    .nav-link {
-        text-decoration: none; /* Elimina el subrayado */
-        color: black; /* Color por defecto (modo claro) */
-        transition: color 0.2s ease; /* Transición suave para el cambio de color */
-        font-weight: bold;
-        font-size: 17px;
-        margin: 0 8px;
-    }
-
-    /* Estilo para modo oscuro */
-    body.modo-oscuro .nav-link {
-        color: white; /* Color en modo oscuro */
-    }
-
-    /* Estilo hover para ambos modos */
-    .nav-link:hover {
-        opacity: 0.8;
-        color:#15803d;
-    }
-    body.modo-oscuro .nav-link:hover {
-        color: #11e25d; /* Color en modo oscuro al pasar el mouse */
-    }
 }
