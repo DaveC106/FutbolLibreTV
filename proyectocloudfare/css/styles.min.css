@@ -194,3 +194,22 @@ body.modo-oscuro .card button:hover {
     margin: 8px;
   }
 }
+
+/* Estilos para los nav-link en pantallas de 768px o más */
+@media (min-width: 768px) {
+    .nav-link {
+        text-decoration: none; /* Elimina el subrayado */
+        color: black; /* Color por defecto (modo claro) */
+        transition: color 0.3s ease; /* Transición suave para el cambio de color */
+    }
+
+    /* Estilo para modo oscuro */
+    body.modo-oscuro .nav-link {
+        color: white; /* Color en modo oscuro */
+    }
+
+    /* Estilo hover para ambos modos */
+    .nav-link:hover {
+        opacity: 0.8;
+    }
+}
