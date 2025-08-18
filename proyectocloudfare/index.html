@@ -176,6 +176,73 @@
   }
 </style> 
 
+<style>
+/* 💬 Estilo del buzón de sugerencias */
+.sugerencia-popup {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  background: #25d366; /* verde WhatsApp */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateX(-120%);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.sugerencia-popup a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+  pointer-events: auto;
+}
+
+.sugerencia-popup.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.sugerencia-popup.hide {
+  opacity: 0;
+  transform: translateX(-120%);
+}
+
+/* 🌙 Cuando el body está en modo oscuro */
+body.modo-oscuro .sugerencia-popup {
+  background: #222;   /* gris oscuro */
+  color: #eee;
+}
+
+body.modo-oscuro .sugerencia-popup a {
+  color: #25d366;  /* verde brillante en modo oscuro */
+}
+
+/* 🌙 Modo oscuro para el buzón principal */
+body.modo-oscuro .suggestion-section {
+  background: #1e1e1e;  /* fondo oscuro */
+  color: #f1f1f1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+/* Ajustar el textarea */
+body.modo-oscuro .suggestion-section textarea {
+  background: #2a2a2a;
+  color: #f1f1f1;
+  border: 1px solid #444;
+}
+
+/* Ajustar el título */
+body.modo-oscuro .suggestion-section h2 {
+  color: #f5f5f5;
+}
+</style>
+
   <section class="suggestion-section">
   <h2>Buzón de Sugerencias y Mejoras</h2>
   <form id="sugerencias-form">
