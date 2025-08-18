@@ -200,9 +200,10 @@ body.modo-oscuro .card button:hover {
     .nav-link {
         text-decoration: none; /* Elimina el subrayado */
         color: black; /* Color por defecto (modo claro) */
-        transition: color 0.3s ease; /* Transición suave para el cambio de color */
+        transition: color 0.2s ease; /* Transición suave para el cambio de color */
         font-weight: bold;
-        font-size: 18px;
+        font-size: 17px;
+        margin: 0 8px;
     }
 
     /* Estilo para modo oscuro */
