@@ -37,12 +37,12 @@
   .servidores a.nombre-servidor {
   display: block;
   background: none;
-  padding: 4px 0;
-  margin: 4px 0;
+  padding: 2px 0;
+  margin: 2px 0;
   border: none;
   border-radius: 0;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 900;
   color: #000; /* negro */
   text-decoration: none;
   transition: color 0.3s;
