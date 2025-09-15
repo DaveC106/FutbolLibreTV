@@ -61,9 +61,15 @@ function abrirPartidoDesdeHash() {
       // ✅ Resaltar nombre
       const nombreEvento = evento.querySelector(".nombre-evento");
       if (nombreEvento) nombreEvento.classList.add("resaltado");
+
+      // 🔹 Scroll suave hasta el partido
+      setTimeout(() => {
+        evento.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100); // pequeño delay para asegurar que todo cargó
     }
   }
 }
+
 
 function convertToUserTimeZone(utcHour) {
   const DateTime = luxon.DateTime;
