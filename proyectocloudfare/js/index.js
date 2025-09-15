@@ -179,7 +179,7 @@ async function obtenerAgenda() {
     <span class="nombre-evento">${nombre}</span>
   </div>
   <div class="servidores" style="margin-top: 8px;">
-    <div class="instruccion" style="font-weight:bold; font-size:16px; color:#e53935; margin-bottom:6px;">
+    <div class="instruccion" style="font-weight:900; font-size:16px; color:#e53935; margin-bottom:6px;">
       Selecciona tu servidor preferido:
     </div>
 `;
