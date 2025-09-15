@@ -1,12 +1,16 @@
 const $ = jQuery;
 const AGENDA_URLS = [
    "https://ftvhd.com/diaries.json", // fuente externa
-//  "https://golazoplay.com/agenda.json"               // tu archivo local
+//  "https://golazoplay.com/agenda.json" // tu archivo local
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
-  obtenerAgenda();
-  setInterval(refrescarAgenda, 60000);
+  obtenerAgenda().then(() => {
+    abrirPartidoDesdeHash();
+  });
+
+  // ⏱️ cada 3 minutos
+  setInterval(refrescarAgenda, 180000);
 });
 
 // Delegación para mostrar servidores
@@ -19,14 +23,47 @@ document.addEventListener("click", function (e) {
 
   const estaActivo = servidores.classList.contains("activo");
 
-  // Oculta todos
+  // Oculta todos los servidores
   document.querySelectorAll(".servidores").forEach(s => s.classList.remove("activo"));
+
+  // Quita resaltado de todos los nombres
+  document.querySelectorAll(".nombre-evento").forEach(n => n.classList.remove("resaltado"));
 
   // Solo activa si estaba cerrado
   if (!estaActivo) {
     servidores.classList.add("activo");
+
+    // ✅ Resaltar nombre
+    const nombreEvento = evento.querySelector(".nombre-evento");
+    if (nombreEvento) nombreEvento.classList.add("resaltado");
+
+    // ✅ Actualiza hash en la URL
+    const id = evento.getAttribute("data-id");
+    if (id) {
+      window.location.hash = "partido-" + id;
+    }
+  } else {
+    // Si lo cierras, limpia el hash
+    history.replaceState(null, null, " ");
   }
 });
+
+function abrirPartidoDesdeHash() {
+  const hash = window.location.hash;
+  if (hash.startsWith("#partido-")) {
+    const partidoId = hash.replace("#partido-", "");
+    const evento = document.querySelector(`.evento[data-id="${partidoId}"]`);
+    if (evento) {
+      const servidores = evento.querySelector(".servidores");
+      if (servidores) {
+        servidores.classList.add("activo");
+      }
+      // ✅ Resaltar nombre
+      const nombreEvento = evento.querySelector(".nombre-evento");
+      if (nombreEvento) nombreEvento.classList.add("resaltado");
+    }
+  }
+}
 
 function convertToUserTimeZone(utcHour) {
   const DateTime = luxon.DateTime;
@@ -43,6 +80,9 @@ function formatDate(dateString) {
 async function refrescarAgenda() {
   await obtenerAgenda();
   console.log("Agenda actualizada");
+
+  // ✅ Reabrir partido desde hash si existe
+  abrirPartidoDesdeHash();
 }
 
 async function obtenerAgenda() {
@@ -52,17 +92,17 @@ async function obtenerAgenda() {
   try {
     let data = [];
 
-for (const url of AGENDA_URLS) {
-  try {
-    const res = await fetch(url);
-    const json = await res.json();
-    if (Array.isArray(json.data)) {
-      data = data.concat(json.data);
+    for (const url of AGENDA_URLS) {
+      try {
+        const res = await fetch(url);
+        const json = await res.json();
+        if (Array.isArray(json.data)) {
+          data = data.concat(json.data);
+        }
+      } catch (err) {
+        console.error("Error cargando eventos desde:", url, err);
+      }
     }
-  } catch (err) {
-    console.error("Error cargando eventos desde:", url, err);
-  }
-}
 
     // ✅ GENERAR DATOS ESTRUCTURADOS JSON-LD
     const sportsEvents = data.map(ev => {
@@ -114,46 +154,40 @@ for (const url of AGENDA_URLS) {
     );
 
     data.forEach((value) => {
-  let imageUrl = "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
+      let imageUrl = "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
 
-  const imgPath = value.attributes.country?.data?.attributes?.image?.data?.attributes?.url || null;
+      const imgPath = value.attributes.country?.data?.attributes?.image?.data?.attributes?.url || null;
 
-  if (imgPath) {
-  imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
-}
+      if (imgPath) {
+        imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
+      }
 
-//if (eventId.startsWith("22")) {
-  // GolazoPlay
-  //imageUrl = "https://img.golazoplay.com" + imgPath;
-//} else if (eventId.startsWith("21")) {
-  // FTVHD
- // imageUrl = "https://ftvhd.com/" + imgPath;
-//}
+      const hora = convertToUserTimeZone(value.attributes.diary_hour);
+      const nombre = value.attributes.diary_description;
 
-
-  const hora = convertToUserTimeZone(value.attributes.diary_hour);
-  const nombre = value.attributes.diary_description;
-
-  let html = `
-<li class="evento" style="list-style: none;">
+      let html = `
+<li class="evento" data-id="${value.id}" style="list-style: none;">
   <div class="fila">
     <span class="hora-ovalo">${hora}</span>
     <img src="${imageUrl}" alt="bandera" style="width: 18px; height: 18px; border-radius: 50%;">
     <span class="nombre-evento">${nombre}</span>
   </div>
   <div class="servidores" style="margin-top: 8px;">
+    <div class="instruccion" style="font-weight:bold; font-size:14px; color:#e53935; margin-bottom:6px;">
+      Selecciona tu servidor preferido:
+    </div>
 `;
 
-  value.attributes.embeds.data.forEach((embed) => {
-    const urlDirecto = embed.attributes.embed_iframe;
-    const nombre = embed.attributes.embed_name;
-    const urlCodificada = btoa(urlDirecto);
-    html += `<a href="/embed/reproductor.html?r=${urlCodificada}" class="nombre-servidor">➤ ${nombre}</a>`;
-  });
-
-  html += `</div></li>`;
-  menuElement.innerHTML += html;
+     value.attributes.embeds.data.forEach((embed) => {
+  const urlDirecto = embed.attributes.embed_iframe;
+  const nombre = embed.attributes.embed_name;
+  const urlCodificada = btoa(urlDirecto);
+  html += `<a href="/embed/reproductor.html?r=${urlCodificada}&id=${value.id}" class="nombre-servidor">➤ ${nombre}</a>`;
 });
+
+      html += `</div></li>`;
+      menuElement.innerHTML += html;
+    });
 
   } catch (err) {
     console.error("Error al cargar la agenda:", err);
