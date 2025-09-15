@@ -1,6 +1,6 @@
 
   html,body{height:100%;display:flex;flex-direction:column;margin:0}body
-  {background:#fff;color:#222;font-family:Arial,sans-serif}
+  {background:#fff;color:#222;font-family:'Poppins',sans-serif}
   /* Estilos para los nav-link en pantallas de 768px o más */
 @media (min-width: 768px) {
     .nav-link {
