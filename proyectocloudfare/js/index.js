@@ -178,13 +178,12 @@ async function obtenerAgenda() {
     </div>
 `;
 
-     value.attributes.embeds.data.forEach((embed) => {
-  const urlDirecto = embed.attributes.embed_iframe;
-  const nombre = embed.attributes.embed_name;
-  const urlCodificada = btoa(urlDirecto);
-html += `<a href="/eventos.html?r=${urlCodificada}&id=${value.id}" class="nombre-servidor">➤ ${nombre}</a>`;
-
-});
+      value.attributes.embeds.data.forEach((embed) => {
+        const urlDirecto = embed.attributes.embed_iframe;
+        const nombre = embed.attributes.embed_name;
+        const urlCodificada = btoa(urlDirecto);
+        html += `<a href="/embed/reproductor.html?r=${urlCodificada}" class="nombre-servidor">➤ ${nombre}</a>`;
+      });
 
       html += `</div></li>`;
       menuElement.innerHTML += html;

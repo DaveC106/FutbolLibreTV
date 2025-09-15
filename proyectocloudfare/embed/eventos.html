@@ -221,20 +221,18 @@ body.modo-oscuro .titulo-link {
   <!--<button id="toggle-tema" style="background:none;border:none;font-size:20px;cursor:pointer;">🌙</button>-->
 </header>
 
- <div class="contenido">
-  <iframe id="player" allowfullscreen></iframe>
-  <a class="boton" href="#" onclick="location.reload()">Recargar página</a>
-  <a id="btnVolver" class="boton" href="/">← Volver a la Agenda</a>
-</div>
-
+  <div class="contenido">
+    <iframe id="player" allowfullscreen></iframe>
+    <a class="boton" href="#" onclick="location.reload()">Recargar página</a>
+  </div>
 
  <h3 style="text-align:center; font-size:16px; color:#cecece; margin-top:10px;">Gracias por apoyar este proyecto. Los anuncios nos permiten mantener el sitio gratis para todos.</h3>
- <script>
+  <script>
   document.addEventListener("DOMContentLoaded", function () {
     const iframe = document.getElementById("player");
+
     const urlParams = new URLSearchParams(window.location.search);
     const encoded = urlParams.get("r");
-    const partidoId = urlParams.get("id"); // 👈 capturamos el id
 
     if (encoded) {
       try {
@@ -243,16 +241,11 @@ body.modo-oscuro .titulo-link {
         iframe.src = decoded;
       } catch (error) {
         console.error("Error al decodificar el parámetro r:", error);
-        iframe.src = "";
+        iframe.src = ""; // o muestra error
       }
-    }
-
-    // 👇 Aquí actualizamos el botón de volver
-    const btnVolver = document.getElementById("btnVolver");
-    if (partidoId) {
-      btnVolver.href = `/index.html#partido-${partidoId}`;
     } else {
-      btnVolver.href = "/index.html";
+      console.warn("No se encontró el parámetro r en la URL");
+      iframe.src = "";
     }
   });
 </script>
