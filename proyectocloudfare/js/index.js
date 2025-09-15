@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Delegación para mostrar servidores
 document.addEventListener("click", function (e) {
+  // ✅ Si el clic fue dentro de .servidores (por ejemplo un <a>), no cerrar nada
+  if (e.target.closest(".servidores")) {
+    return;
+  }
+
   const evento = e.target.closest(".evento");
   if (!evento) return;
 
@@ -69,7 +74,6 @@ function abrirPartidoDesdeHash() {
     }
   }
 }
-
 
 function convertToUserTimeZone(utcHour) {
   const DateTime = luxon.DateTime;
