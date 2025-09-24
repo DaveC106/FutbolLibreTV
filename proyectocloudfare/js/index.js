@@ -34,9 +34,13 @@ document.addEventListener("click", function (e) {
   // Quita resaltado de todos los nombres
   document.querySelectorAll(".nombre-evento").forEach(n => n.classList.remove("resaltado"));
 
+  // Quitar fondo activo de todos los eventos
+document.querySelectorAll(".evento").forEach(ev => ev.classList.remove("activo"));
+
   // Solo activa si estaba cerrado
   if (!estaActivo) {
     servidores.classList.add("activo");
+      evento.classList.add("activo");
 
     // ✅ Resaltar nombre
     const nombreEvento = evento.querySelector(".nombre-evento");
@@ -62,6 +66,7 @@ function abrirPartidoDesdeHash() {
       const servidores = evento.querySelector(".servidores");
       if (servidores) {
         servidores.classList.add("activo");
+        evento.classList.add("activo");
       }
       // ✅ Resaltar nombre
       const nombreEvento = evento.querySelector(".nombre-evento");

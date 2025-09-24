@@ -221,3 +221,20 @@ body.modo-oscuro .card button:hover {
     margin: 8px;
   }
 }
+
+
+/* Fondo por defecto */
+.evento {
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+/* Fondo cuando el evento está abierto */
+.evento.activo {
+  background-color: #d3ffe4;
+}
+
+/* Si quieres que al pasar el mouse sea un poco más oscuro */
+.evento.activo:hover {
+  background-color: #b8f8cf;
+}
