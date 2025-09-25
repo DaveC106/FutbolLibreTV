@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Delegación para mostrar servidores
 document.addEventListener("click", function (e) {
-  // ✅ Si el clic fue dentro de .servidores (por ejemplo un <a>), no cerrar nada
   if (e.target.closest(".servidores")) {
     return;
   }
@@ -28,31 +27,22 @@ document.addEventListener("click", function (e) {
 
   const estaActivo = servidores.classList.contains("activo");
 
-  // Oculta todos los servidores
   document.querySelectorAll(".servidores").forEach(s => s.classList.remove("activo"));
-
-  // Quita resaltado de todos los nombres
   document.querySelectorAll(".nombre-evento").forEach(n => n.classList.remove("resaltado"));
+  document.querySelectorAll(".evento").forEach(ev => ev.classList.remove("activo"));
 
-  // Quitar fondo activo de todos los eventos
-document.querySelectorAll(".evento").forEach(ev => ev.classList.remove("activo"));
-
-  // Solo activa si estaba cerrado
   if (!estaActivo) {
     servidores.classList.add("activo");
-      evento.classList.add("activo");
+    evento.classList.add("activo");
 
-    // ✅ Resaltar nombre
     const nombreEvento = evento.querySelector(".nombre-evento");
     if (nombreEvento) nombreEvento.classList.add("resaltado");
 
-    // ✅ Actualiza hash en la URL
     const id = evento.getAttribute("data-id");
     if (id) {
       window.location.hash = "partido-" + id;
     }
   } else {
-    // Si lo cierras, limpia el hash
     history.replaceState(null, null, " ");
   }
 });
@@ -68,14 +58,12 @@ function abrirPartidoDesdeHash() {
         servidores.classList.add("activo");
         evento.classList.add("activo");
       }
-      // ✅ Resaltar nombre
       const nombreEvento = evento.querySelector(".nombre-evento");
       if (nombreEvento) nombreEvento.classList.add("resaltado");
 
-      // 🔹 Scroll suave hasta el partido
       setTimeout(() => {
         evento.scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 100); // pequeño delay para asegurar que todo cargó
+      }, 100);
     }
   }
 }
@@ -95,9 +83,12 @@ function formatDate(dateString) {
 async function refrescarAgenda() {
   await obtenerAgenda();
   console.log("Agenda actualizada");
-
-  // ✅ Reabrir partido desde hash si existe
   abrirPartidoDesdeHash();
+}
+
+// 🔹 Función para quitar tildes
+function quitarTildes(texto) {
+  return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
 async function obtenerAgenda() {
@@ -164,15 +155,76 @@ async function obtenerAgenda() {
     const dateCompleted = formatDate(new Date().toISOString());
     titleAgendaElement.textContent = "Agenda - " + dateCompleted;
 
+    // 🔍 AGREGAMOS EL BUSCADOR Y MENSAJE AQUÍ
+    let buscador = document.getElementById("buscador-partidos");
+    let mensajeNoResultados = document.getElementById("mensaje-no-resultados");
+
+    if (!buscador) {
+      buscador = document.createElement("input");
+      buscador.type = "text";
+      buscador.id = "buscador-partidos";
+      buscador.placeholder = "Buscar partido por nombre o torneo...";
+      buscador.style.width = "97%";
+      buscador.style.margin = "10px 0";
+      buscador.style.padding = "8px";
+      buscador.style.borderRadius = "5px";
+      buscador.style.border = "1px solid #ccc";
+      buscador.style.backgroundColor = "#f1f3f4";
+      buscador.style.color = "#000";
+
+      titleAgendaElement.insertAdjacentElement("afterend", buscador);
+
+      // Mensaje dinámico con botón
+      mensajeNoResultados = document.createElement("div");
+      mensajeNoResultados.id = "mensaje-no-resultados";
+      mensajeNoResultados.style.display = "none";
+      mensajeNoResultados.style.margin = "10px 0";
+      mensajeNoResultados.style.padding = "10px";
+      mensajeNoResultados.style.background = "#f1f3f4";
+      mensajeNoResultados.style.color = "#000000ff";
+      mensajeNoResultados.style.border = "1px solid #f5c6cb";
+      mensajeNoResultados.style.borderRadius = "5px";
+      mensajeNoResultados.style.textAlign = "center";
+      mensajeNoResultados.innerHTML = `
+        <p>¿No encuentras el partido que quieres ver?</p>
+        <a href="https://futbolibretv.pages.dev/#donacion-section" 
+           style="display:inline-block; margin-top:5px; padding:8px 12px; background:#15803d; color:white; text-decoration:none; border-radius:5px;">
+           Pedir partido
+        </a>
+      `;
+      buscador.insertAdjacentElement("afterend", mensajeNoResultados);
+
+      // Evento para filtrar en tiempo real con tildes ignoradas
+      buscador.addEventListener("input", function () {
+        const texto = quitarTildes(this.value.toLowerCase());
+        let hayResultados = false;
+
+        document.querySelectorAll(".evento").forEach(evento => {
+          const nombre = quitarTildes(evento.querySelector(".nombre-evento").textContent.toLowerCase());
+          if (nombre.includes(texto)) {
+            evento.style.display = "";
+            hayResultados = true;
+          } else {
+            evento.style.display = "none";
+          }
+        });
+
+        // Mostrar u ocultar mensaje si no hay resultados
+        if (!hayResultados && texto.trim() !== "") {
+          mensajeNoResultados.style.display = "block";
+        } else {
+          mensajeNoResultados.style.display = "none";
+        }
+      });
+    }
+
     data.sort((a, b) =>
       a.attributes.diary_hour.localeCompare(b.attributes.diary_hour)
     );
 
     data.forEach((value) => {
       let imageUrl = "https://panel.futbollibretvs.pe/uploads/sin_imagen_d36205f0e8.png";
-
       const imgPath = value.attributes.country?.data?.attributes?.image?.data?.attributes?.url || null;
-
       if (imgPath) {
         imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
       }
