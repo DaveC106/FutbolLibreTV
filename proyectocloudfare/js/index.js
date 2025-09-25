@@ -169,8 +169,43 @@ async function obtenerAgenda() {
       buscador.style.padding = "8px";
       buscador.style.borderRadius = "5px";
       buscador.style.border = "1px solid #ccc";
-      buscador.style.backgroundColor = "#f1f3f4";
-      buscador.style.color = "#000";
+
+      // 🔹 Detectar modo oscuro con tu clase
+      function aplicarColoresBuscador() {
+        const esModoOscuro = document.body.classList.contains("modo-oscuro");
+
+        // Buscador
+        buscador.style.backgroundColor = esModoOscuro ? "#2c2c2c" : "#f1f3f4";
+        buscador.style.color = esModoOscuro ? "#ffffff" : "#000000";
+        buscador.style.border = esModoOscuro ? "1px solid #555" : "1px solid #ccc";
+
+        // Placeholder
+        buscador.style.setProperty("--placeholder-color", esModoOscuro ? "#aaa" : "#555");
+        buscador.style.color = esModoOscuro ? "#fff" : "#000";
+
+        // Mensaje sin resultados
+        if (mensajeNoResultados) {
+          mensajeNoResultados.style.background = esModoOscuro ? "#333" : "#f1f3f4";
+          mensajeNoResultados.style.color = esModoOscuro ? "#fff" : "#000";
+          mensajeNoResultados.querySelector("a").style.background = esModoOscuro ? "#15803d" : "#15803d";
+        }
+      }
+
+      // Al cargar
+      aplicarColoresBuscador();
+
+      // Observar cambios en el body para modo oscuro
+      const observer = new MutationObserver(() => aplicarColoresBuscador());
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+      // Placeholder en CSS dinámico
+      const style = document.createElement("style");
+      style.innerHTML = `
+        #buscador-partidos::placeholder {
+          color: var(--placeholder-color);
+        }
+      `;
+      document.head.appendChild(style);
 
       titleAgendaElement.insertAdjacentElement("afterend", buscador);
 
@@ -182,7 +217,7 @@ async function obtenerAgenda() {
       mensajeNoResultados.style.padding = "10px";
       mensajeNoResultados.style.background = "#f1f3f4";
       mensajeNoResultados.style.color = "#000000ff";
-      mensajeNoResultados.style.border = "1px solid #f5c6cb";
+      mensajeNoResultados.style.border = "1px solid #ccc";
       mensajeNoResultados.style.borderRadius = "5px";
       mensajeNoResultados.style.textAlign = "center";
       mensajeNoResultados.innerHTML = `
