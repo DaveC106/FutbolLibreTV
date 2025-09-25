@@ -187,7 +187,7 @@ async function obtenerAgenda() {
       mensajeNoResultados.style.textAlign = "center";
       mensajeNoResultados.innerHTML = `
         <p>¿No encuentras el partido que quieres ver?</p>
-        <a href="https://futbolibretv.pages.dev/#donacion-section" 
+        <a href="https://futbolibretv.pages.dev/#sugerencias-form" 
            style="display:inline-block; margin-top:5px; padding:8px 12px; background:#15803d; color:white; text-decoration:none; border-radius:5px;">
            Pedir partido
         </a>
