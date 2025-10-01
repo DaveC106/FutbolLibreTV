@@ -70,7 +70,8 @@ function abrirPartidoDesdeHash() {
 
 function convertToUserTimeZone(dateTimeISO) {
   const DateTime = luxon.DateTime;
-  const utcDateTime = DateTime.fromISO(dateTimeISO); // incluye -05:00
+  // 👇 le decimos que la hora original siempre es UTC-5 (Lima/Bogotá)
+  const utcDateTime = DateTime.fromISO(dateTimeISO, { setZone: true });
   return utcDateTime.toLocal().toFormat("HH:mm");
 }
 function formatDate(dateString) {
