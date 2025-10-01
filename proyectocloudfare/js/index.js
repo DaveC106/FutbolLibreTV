@@ -68,13 +68,11 @@ function abrirPartidoDesdeHash() {
   }
 }
 
-function convertToUserTimeZone(utcHour) {
+function convertToUserTimeZone(dateTimeISO) {
   const DateTime = luxon.DateTime;
-  const utcDateTime = DateTime.fromISO(utcHour, { zone: "America/Lima" });
-  const localDateTime = utcDateTime.toLocal();
-  return localDateTime.toFormat("HH:mm");
+  const utcDateTime = DateTime.fromISO(dateTimeISO); // incluye -05:00
+  return utcDateTime.toLocal().toFormat("HH:mm");
 }
-
 function formatDate(dateString) {
   const options = { year: "numeric", month: "long", day: "numeric" };
   return new Date(dateString).toLocaleDateString("es-ES", options);
@@ -264,7 +262,8 @@ async function obtenerAgenda() {
         imageUrl = "https://panel.futbollibretvs.pe" + imgPath;
       }
 
-      const hora = convertToUserTimeZone(value.attributes.diary_hour);
+     const dateTime = `${value.attributes.date_diary}T${value.attributes.diary_hour}-05:00`;
+    const hora = convertToUserTimeZone(dateTime);
       const nombre = value.attributes.diary_description;
 
       let html = `
